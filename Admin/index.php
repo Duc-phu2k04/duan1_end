@@ -24,12 +24,12 @@ if (isset($_GET['act'])) {
 
         // Thống kê
         case "thongke":
-            // $listthongke = loadall_thongke();
+            $listthongke = loadall_thongke();
             include "thongke/list.php";
             break;
 
         case "bieudo":
-            // $listthongke = loadall_thongke();
+            $listthongke = loadall_thongke();
             include "thongke/bieudo.php";
             break;
         default:
@@ -37,10 +37,8 @@ if (isset($_GET['act'])) {
             // $tongsp = tinhtongsp();
             // $tongtk = tinhtongtk();
             // $tongbl = tinhtongbl();
-            // $listdanhmuc = loadall_danhmuc();
-            // $listthongke = loadall_thongke();
-            // $listsanpham = loadall_sanpham($kym, $iddm);
-            // include "home.php";
+            $listthongke = loadall_thongke();
+            include "home.php";
             break;
     }
 } else {
@@ -58,8 +56,6 @@ if (isset($_GET['act'])) {
     // $tongsp = tinhtongsp();
     // $tongtk = tinhtongtk();
     // $tongbl = tinhtongbl();
-    // $listdanhmuc = loadall_danhmuc();
-    // $listsanpham = loadall_sanpham($kym, $iddm);
     include "home.php";
 }
 

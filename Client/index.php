@@ -96,7 +96,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $_SESSION['mycart'] = $cartItems;
             }
             // $sanphamtop6 = load_sanpham_top6();
-            // include('view/menu/giohang.php');
+             include('view/menu/giohang.php');
             break;
 
         case "thanhtoan":
@@ -115,31 +115,31 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $thoigian_mua = date('d/m/Y');
                 $pt_thanhtoan = $_POST['pt_thanhtoan'];
 
-                // $id_dathang = insert_donhang($nguoidung, $sdt, $email, $diachi, $thoigian_mua, $pt_thanhtoan, count($_SESSION['mycart']), $_SESSION['user']['id']);
+              $id_dathang = insert_donhang($nguoidung, $sdt, $email, $diachi, $thoigian_mua, $pt_thanhtoan, count($_SESSION['mycart']), $_SESSION['user']['id']);
 
-                // $donhang = loadone_donhang($id_dathang);
-                // $giohang = load_cart($id_dathang);
-                // foreach ($_SESSION['mycart'] as $cart) {
-                //     insert_giohang($_SESSION['user']['id'], $cart[0], $cart[1], $cart[2], $cart[3], $cart[4], $id_dathang);
-                // }
-                // $_SESSION['mycart'] = [];
-                // header("Location: index.php?act=hoadon&id_donhang=$id_dathang");
+                 $donhang = loadone_donhang($id_dathang);
+                $giohang = load_cart($id_dathang);
+                 foreach ($_SESSION['mycart'] as $cart) {
+                    insert_giohang($_SESSION['user']['id'], $cart[0], $cart[1], $cart[2], $cart[3], $cart[4], $id_dathang);
+                }
+                 $_SESSION['mycart'] = [];
+                 header("Location: index.php?act=hoadon&id_donhang=$id_dathang");
              }
-            // $donhang = load_hoadon_user($_SESSION['user']['id']);
-            // $giohang = load_cart($_SESSION['user']['id']);
-            // $sanphamtop5 = loadall_sanpham_top5();
-            // include("view/thanhtoan.php");
+            $donhang = load_hoadon_user($_SESSION['user']['id']);
+            $giohang = load_cart($_SESSION['user']['id']);
+             //$sanphamtop5 = loadall_sanpham_top5();
+             include("view/thanhtoan.php");
             break;
 
         case "hoadon":
             if (!isset($_SESSION["user"])) {
                 header("Location: index.php");
             }
-            // if (isset($_GET['id_donhang']) && ($_GET['id_donhang']) > 0) {
-            //     $giohang = load_cart($_GET['id_donhang']);
-            // }
-            // $donhang = loadonedonang();
-            // include "view/hoadon.php";
+             if (isset($_GET['id_donhang']) && ($_GET['id_donhang']) > 0) {
+                 $giohang = load_cart($_GET['id_donhang']);
+             }
+            $donhang = loadonedonang();
+            include "view/hoadon.php";
             break;
 
         case "deletecart":
@@ -160,10 +160,9 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $iddm = 0;
             }
             ;
-            // $listsptheomua = loadall_sptheomua();
             // $listdanhmuc = loadall_danhmuc();
             // $listsanpham = loadall_sanpham($kyw, $iddm);
-            // include("home.php");
+             include("home.php");
             break;
 
     }
@@ -179,7 +178,6 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
     // $sanphamShop = loadall_shop();
     // $sanphamtop5 = loadall_sanpham_top10();
     // $listdanhmuc = loadall_danhmuc();
-    // $listsptheomua = loadall_sptheomua();
     // $listsanpham = loadall_sanpham($kyw, $iddm);
 
     include("home.php");
