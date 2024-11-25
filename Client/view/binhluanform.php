@@ -20,7 +20,7 @@ if(isset($_SESSION["user"])) {
 //     echo"";
 // }
 $listbl = loadall_binhluan($id_sp);
-$sanpham = loadone_sanpham($id_sp);
+// $sanpham = loadone_sanpham($id_sp);
 if(is_array($sanpham)) {
     extract($sanpham);
 }
