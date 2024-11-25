@@ -68,7 +68,7 @@ $regexEmail = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]
                 else {
                     insert_taikhoan($nguoidung, $matkhau, $email, $img, $diachi, $sdt, $id_role);
                     echo "<span style='color:green;'>Đăng ký thành công</span>";
-                  
+                    // header("Location: index.php?act=dangnhap");
                 }
 
             } ?>
