@@ -57,7 +57,6 @@
                                     <a href="' . $xoasp . '"  onclick="return confirmDeletesp()"><input type="button" class=" form-control btn btn-danger mt-2" value="Xóa"></a>
                                 </td> 
                                 </tr>';
-
                         }
                         ?>
                     </tbody>

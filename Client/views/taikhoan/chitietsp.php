@@ -82,9 +82,9 @@ if (isset($_SESSION['nguoidung']) && (is_array($_SESSION['nguoidung']))) {
 <div class="container">
 
     <iframe src="./view/binhluanform.php?id_sp=<?php if (is_array($sanpham)) {
-        extract($sanpham);
-    }
-    echo $id; ?>" width="100%" height="300px" frameborder="0"></iframe>
+                                                    extract($sanpham);
+                                                }
+                                                echo $id; ?>" width="100%" height="300px" frameborder="0"></iframe>
 
 
     <div class="comment">
@@ -101,37 +101,37 @@ if (isset($_SESSION['nguoidung']) && (is_array($_SESSION['nguoidung']))) {
                     extract($sanpham);
                     $hinh = "../upload_file/" . $img;
                     $linksp = "index.php?act=chitietsp&id=" . $id;
-                    ?>
-                <form action="index.php?act=addgiohang" method="post">
-                    <li class="product-item">
-                        <div class="product-inner">
-                            <div class="product-thumb">
-                                <input type="hidden" name="id" value="<?= $id ?>">
-                                <input type="hidden" name="img" value="<?= $img ?>">
-                                <a href="<?= $linksp ?>"><img src="<?= $hinh ?>" alt=""></a>
+                ?>
+                    <form action="index.php?act=addgiohang" method="post">
+                        <li class="product-item">
+                            <div class="product-inner">
+                                <div class="product-thumb">
+                                    <input type="hidden" name="id" value="<?= $id ?>">
+                                    <input type="hidden" name="img" value="<?= $img ?>">
+                                    <a href="<?= $linksp ?>"><img src="<?= $hinh ?>" alt=""></a>
+                                </div>
+                                <div class="product-info">
+
+                                    <h3 class="product-name"><a href="#">
+                                            <input type="hidden" name="tensp" value="<?= $tensp ?>">
+                                            <?= $tensp ?>
+                                        </a></h3>
+
+                                    <input type="hidden" name="soluong" value="1">
+
+                                    <span class="price">
+                                        <ins style="color:red">
+                                            <input type="hidden" name="giasp" value="<?= $giasp ?> ₫">
+                                            <?= $giasp ?> ₫
+                                        </ins>
+                                    </span>
+                                    <!-- <a href="#" class="button" name="addtocart"></a>Thêm vào giỏ hàng</a> -->
+                                    <input type="submit" name="addtocart" onclick="return confirmAddgh()"
+                                        value="Thêm vào giỏ hàng">
+                                </div>
                             </div>
-                            <div class="product-info">
-
-                                <h3 class="product-name"><a href="#">
-                                        <input type="hidden" name="tensp" value="<?= $tensp ?>">
-                                        <?= $tensp ?>
-                                    </a></h3>
-
-                                <input type="hidden" name="soluong" value="1">
-
-                                <span class="price">
-                                    <ins style="color:red">
-                                        <input type="hidden" name="giasp" value="<?= $giasp ?> ₫">
-                                        <?= $giasp ?> ₫
-                                    </ins>
-                                </span>
-                                <!-- <a href="#" class="button" name="addtocart"></a>Thêm vào giỏ hàng</a> -->
-                                <input type="submit" name="addtocart" onclick="return confirmAddgh()"
-                                    value="Thêm vào giỏ hàng">
-                            </div>
-                        </div>
-                    </li>
-                </form>
+                        </li>
+                    </form>
 
                 <?php endforeach; ?>
             </ul>
@@ -141,13 +141,13 @@ if (isset($_SESSION['nguoidung']) && (is_array($_SESSION['nguoidung']))) {
     <!--END CONTAINER-->
     <!-- ./tab -->
     <script>
-    function confirmAddgh() {
-        if (confirm("Bạn thêm sản phẩm này vào giỏ hàng?")) {
-            document.location = "index.php?act=listsp";
-        } else {
-            return false;
+        function confirmAddgh() {
+            if (confirm("Bạn thêm sản phẩm này vào giỏ hàng?")) {
+                document.location = "index.php?act=listsp";
+            } else {
+                return false;
+            }
         }
-    }
     </script>
 
     <?php include "menu/3hopcn.php" ?>

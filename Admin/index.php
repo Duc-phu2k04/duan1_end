@@ -4,10 +4,10 @@ include "../model/danhmuc.php";
 include "../model/sanpham.php";
 include "header.php";
 
-if(isset($_GET['act'])){
+if (isset($_GET['act'])) {
     $act = $_GET['act'];
     switch ($variable) {
-        //danh mục
+            //danh mục
         case "listdm":
 
             $listdanhmuc = loadall_danhmuc();
@@ -29,7 +29,6 @@ if(isset($_GET['act'])){
 
                 insert_danhmuc($tendm, $img);
                 $thongbao = "Thêm thành công danh mục";
-
             }
             include "danhmuc/add.php";
             break;
@@ -60,7 +59,7 @@ if(isset($_GET['act'])){
             $listdanhmuc = loadall_danhmuc();
             include "danhmuc/list.php";
             break;
-             // Sản phẩm
+            // Sản phẩm
         case "listsp":
             if (isset($_POST['listok']) && ($_POST['listok'])) {
                 $kyw = $_POST['kyw'];
@@ -81,8 +80,6 @@ if(isset($_GET['act'])){
             if (isset($_GET['id']) && $_GET['id'] > 0) {
 
                 $sanpham = loadone_sanpham($_GET['id']);
-
-
             }
             $luotmua = loadall_sptheodotuoi();
             $listdanhmuc = loadall_danhmuc();
@@ -155,7 +152,6 @@ if(isset($_GET['act'])){
 
                 update_sanpham($id, $iddm, $id_sptheodotuoi, $tensp, $giasp, $mota, $soluong, $luotxem, $trangthai, $hinh);
                 $thongbao = 'Cập nhật thành công';
-
             }
 
             $listmua = loadall_sptheodotuoi();
@@ -163,6 +159,5 @@ if(isset($_GET['act'])){
             $listsanpham = loadall_sanpham();
             include "sanpham/list.php";
             break;
-
-}
+    }
 }

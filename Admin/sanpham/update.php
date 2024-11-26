@@ -33,9 +33,9 @@ if (is_file($hinhpath)) {
                             <?php
                             foreach ($listdanhmuc as $danhmuc) {
                                 extract($danhmuc);
-                                if ($iddm == $id){
+                                if ($iddm == $id) {
                                     $s = "selected";
-                                }else{
+                                } else {
                                     $s = "";
                                 }
                                 echo '<option value="' . $id . '" ' . $s . '>' . $tendm . '</option>';
@@ -47,14 +47,14 @@ if (is_file($hinhpath)) {
                             <?php
                             foreach ($listmua as $sptheodotuoi) {
                                 extract($sptheodotuoi);
-                                if ($id_sptheodotuoi == $id_dotuoi){
+                                if ($id_sptheodotuoi == $id_dotuoi) {
                                     $s = "selected";
-                                }else{
+                                } else {
                                     $s = "";
                                 }
-                                echo '<option value="' . $id_dotuoi . '" ' . $s . '>' . $dotuoi. '</option>';
+                                echo '<option value="' . $id_dotuoi . '" ' . $s . '>' . $dotuoi . '</option>';
                             }
-                            
+
                             ?>
                         </select>
                     </div>

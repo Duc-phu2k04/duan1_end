@@ -4,7 +4,6 @@ function insert_sanpham($tensp, $giasp, $hinh, $mota, $soluong, $luotxem, $trang
 {
     $sql = "insert into sanpham (tensp, giasp, img , mota, soluong, luotxem, trangthai, iddm) values ('$tensp', '$giasp', '$hinh', '$mota','$soluong','$luotxem','$trangthai', '$iddm')";
     pdo_execute($sql);
-
 }
 
 
@@ -117,9 +116,8 @@ function update_sanpham($id, $iddm, $id_sptheodotuoi, $tensp, $giasp, $mota, $so
     pdo_execute($sql);
 }
 
-function tang_luotxem($luotxem,$idsp){
+function tang_luotxem($luotxem, $idsp)
+{
     $sql = "UPDATE sanpham SET luotxem='$luotxem' WHERE id_sp='$idsp'";
     pdo_execute($sql);
 }
-
-?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 25, 2024 at 05:25 AM
+-- Generation Time: Nov 26, 2024 at 12:42 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -35,15 +35,6 @@ CREATE TABLE `binhluan` (
   `ngaybinhluan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `binhluan`
---
-
-INSERT INTO `binhluan` (`id`, `noidung`, `id_nguoidung`, `id_sp`, `ngaybinhluan`) VALUES
-(44, 'Đồng hồ đẹp quá', 2, 49, '06/12/2023'),
-(45, 'Đồng hồ Đẹp quá đi ', 2, 45, '06/12/2023'),
-(46, 'Đồng hồ đẹp thật', 2, 45, '06/12/2023');
-
 -- --------------------------------------------------------
 
 --
@@ -61,14 +52,9 @@ CREATE TABLE `danhmuc` (
 --
 
 INSERT INTO `danhmuc` (`id`, `tendm`, `img`) VALUES
-(32, 'Đồng hồ Nam', 'quan72.JPG'),
-(33, 'Đồng hồ Nữ', 'ao13.jpg'),
-(34, 'Cặp đôi', 'quan12.jpg'),
-(35, 'Quần đùi', 'quan27.JPG'),
-(36, 'Áo gió', 'ao27.jpg'),
-(37, 'Giày da', '50.jpg'),
-(38, 'Áo khoác', 'ao41.jpg'),
-(40, 'Sơ mi', 'ao21.jpg');
+(32, 'Đồng hồ Nam', 'download.jpg'),
+(34, 'Cặp đôi', 'download.jpg'),
+(41, 'đồng hồ nữ', 'ra-aa0b04r19b_1.webp');
 
 -- --------------------------------------------------------
 
@@ -187,24 +173,7 @@ CREATE TABLE `sanpham` (
 --
 
 INSERT INTO `sanpham` (`id`, `tensp`, `giasp`, `img`, `mota`, `iddm`, `id_sptheomua`, `soluong`, `luotxem`, `trangthai`) VALUES
-(26, 'Áo phông phong cách', 300.000, 'ao13.jpg', 'Áo phông mẫu mới nhất', 33, 2, 5, 10, 0),
-(31, 'Áo phông xám', 350.000, 'ao4.jpg', 'Áo mới hot nhất năm nay', 33, 2, 5, 15, 0),
-(32, 'Áo phông xanh', 500.000, 'ao3.jpg', 'Mẫu mới nhất năm nay nhanh tay ! nhanh tay !', 33, 1, 0, 20, 0),
-(33, 'Quần âu nâu đất', 300.000, 'quan7.jpg', 'QUần âu mới về giá hợp túi tiền', 32, 3, 0, 5, 0),
-(34, 'Quần âu đen', 300.000, 'quan63.JPG', 'Quần âu nam phong cách', 32, 2, 0, 7, 0),
-(35, 'Quần âu xanh kẻ caro', 350.000, 'quan48.JPG', 'Quần áo phong cách Âu Mỹ', 32, 3, 0, 2, 0),
-(36, 'Quần âu xám caro', 300.000, 'quan57.JPG', 'Quần âu mẫu mới về', 32, 1, 0, 7, 0),
-(37, 'Quần bò phong cách', 350.000, 'quan12.jpg', 'Mẫu mới Hàn Quốc', 34, 3, 0, 9, 0),
-(38, 'Quần đùi mùa hè', 500.000, 'quan36.jpg', 'Chất liều bền, đẹp', 35, 2, 6, 2, 0),
-(39, 'Giày da nâu', 250.000, '50.jpg', 'Giày da đẹp siêu bền', 37, 2, 6, 15, 0),
-(40, 'Áo gió xanh', 250.000, 'ao28.jpg', 'Áo gió đẹp', 36, 4, 2, 19, 0),
-(41, 'Quần đùi bò ', 300.000, 'quan28.JPG', 'Quần đùi bò đẹp, bền ', 35, 1, 8, 11, 0),
-(42, 'Quần bò xanh đậm', 255.000, 'quan15.jpg', 'Quần bò đẹp siêu bền', 34, 1, 8, 2, 0),
-(43, 'Áo gió xám', 300.000, 'ao29.jpg', 'Áo gió chất liệu bền', 36, 4, 8, 2, 0),
-(44, 'Áo gió xanh rêu', 250.000, 'ao27.jpg', 'Áo gió siêu đẹp, giá hời', 36, 4, 10, 2, 0),
-(45, 'Áo khoác nâu trắng', 350.000, 'ao41.jpg', 'Đông đã về nhanh tay đặt mua ngay', 38, 4, 10, 0, 0),
-(46, 'Áo khoác  đen có mũ ', 350.000, 'ao43.jpg', 'Áo khoác đẹp giá rẻ ', 38, 3, 10, 7, 0),
-(49, 'Sơ mi cộc tay', 250.000, 'ao21.jpg', 'Áo sơ mi chất liệu cotton', 40, 1, 10, 1, 0);
+(51, 'rolex nữ', 2000000.000, 'ra-aa0b04r19b_1.webp', 'hvbjnk', 34, 2, 1, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -249,7 +218,7 @@ CREATE TABLE `taikhoan` (
 --
 
 INSERT INTO `taikhoan` (`id`, `nguoidung`, `matkhau`, `email`, `img`, `diachi`, `sdt`, `id_role`) VALUES
-(1, 'ronaldohaha  ', '123456789', 'ronaldo@gmail.com', 'download.jpg', 'ok văn kê', '0912345678', 1),
+(1, 'ronaldohaha   a', '123456789', 'ronaldo@gmail.com', 'download.jpg', 'ok văn kê', '0912345678', 1),
 (2, 'Đỗ Khánh Vũ     ', '1234567899', 'khanhvux@gmail.com', 'anh4.jpg', 'Thôn Bến - Xã Dị Nậu - Thạch Thất - Hà Nội', '0936273444', 1),
 (3, 'Đặng Quang Vinh ', '44444444', 'vinhdq@gmail.com', 'anh4.jpg', 'Hà Nội', '0948327283', 3),
 (4, 'Trần Đăng Diện ', '44446666', 'dientd@gmail.com', 'anh4.jpg', 'Hà Nội - Việt Nam', '0912345678', 3),
@@ -361,7 +330,7 @@ ALTER TABLE `binhluan`
 -- AUTO_INCREMENT for table `danhmuc`
 --
 ALTER TABLE `danhmuc`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `donhang`
@@ -385,7 +354,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `sptheomua`

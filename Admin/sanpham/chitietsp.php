@@ -81,10 +81,10 @@ if (is_file($hinhpath)) {
             </div>
             <br>
 
-            <iframe src="./sanpham/listbl.php?id_sp=<?php if(is_array($sanpham)){
-                extract($sanpham);
-            } 
-            echo $id;?>" width="100%" height="300px" frameborder="0"></iframe>
+            <iframe src="./sanpham/listbl.php?id_sp=<?php if (is_array($sanpham)) {
+                                                        extract($sanpham);
+                                                    }
+                                                    echo $id; ?>" width="100%" height="300px" frameborder="0"></iframe>
             <div class="row">
                 <div class="function-back">
                     <a href="index.php?act=listsp"><input type="submit" class="btn btn-primary"
@@ -100,7 +100,8 @@ if (is_file($hinhpath)) {
     </div>
     <br>
 
-    <?php //include "listbl.php"; ?>
+    <?php //include "listbl.php"; 
+    ?>
 
     <!--End Content -->
 
