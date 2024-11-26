@@ -5,7 +5,13 @@ include "../model/pdo.php";
 include "../model/taikhoan.php";
 include "../model/danhmuc.php";
 include "../model/sanpham.php";
+include "../model/thongke.php";
+include "../model/donhang.php";
+include "../model/giohang.php";
+include "../model/binhluan.php";
+include "../model/tong.php";
 
+// Bao gồm header
 include "header.php";
 
 // Controller chính
@@ -13,7 +19,25 @@ if (isset($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
 
-        // Quản lý tài khoản
+        // Bình luận
+        case "listbl":
+            $listbl = loadall_binhluan($id_sp);
+            $listbinhluan = loadall_binhluan_admin();
+            include "binhluan/list.php";
+            break;
+
+        // Thống kê
+        case "thongke":
+            $listthongke = loadall_thongke();
+            include "thongke/list.php";
+            break;
+
+        case "bieudo":
+            $listthongke = loadall_thongke();
+            include "thongke/bieudo.php";
+            break;
+
+        // Tài khoản
         case "listtk":
             $listtaikhoan = loadall_taikhoan();
             $listrole = loadall_role();
@@ -29,7 +53,6 @@ if (isset($_GET['act'])) {
                 $diachi = $_POST['diachi'];
                 $sdt = $_POST['sdt'];
                 $id_role = $_POST['id_role'];
-
                 update_taikhoan_admin($id, $nguoidung, $matkhau, $email, $diachi, $sdt, $id_role);
                 $thongbao = "Cập nhật thành công";
             }
@@ -200,8 +223,19 @@ if (isset($_GET['act'])) {
             break;
     }
 } else {
-    echo "Không có hành động nào được yêu cầu!";
+    // Nếu không có act trong URL
+    $kym = isset($_POST['listok']) && ($_POST['listok']) ? $_POST['kym'] : "";
+    $iddm = isset($_POST['listok']) && ($_POST['listok']) ? $_POST['iddm'] : 0;
+
+    $listthongke = loadall_thongke();
+    $tongdm = tinhtongdm();
+    $tongsp = tinhtongsp();
+    $tongtk = tinhtongtk();
+    $tongbl = tinhtongbl();
+    include "home.php";
 }
 
+// Bao gồm footer
 include "footer.php";
+
 ?>
