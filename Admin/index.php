@@ -33,10 +33,10 @@ if (isset($_GET['act'])) {
             include "thongke/bieudo.php";
             break;
         default:
-            // $tongdm = tinhtongdm();
-            // $tongsp = tinhtongsp();
-            // $tongtk = tinhtongtk();
-            // $tongbl = tinhtongbl();
+            $tongdm = tinhtongdm();
+            $tongsp = tinhtongsp();
+            $tongtk = tinhtongtk();
+            $tongbl = tinhtongbl();
             $listthongke = loadall_thongke();
             include "home.php";
             break;
@@ -51,11 +51,11 @@ if (isset($_GET['act'])) {
         $iddm = 0;
     }
     ;
-    // $listthongke = loadall_thongke();
-    // $tongdm = tinhtongdm();
-    // $tongsp = tinhtongsp();
-    // $tongtk = tinhtongtk();
-    // $tongbl = tinhtongbl();
+    $listthongke = loadall_thongke();
+    $tongdm = tinhtongdm();
+    $tongsp = tinhtongsp();
+    $tongtk = tinhtongtk();
+    $tongbl = tinhtongbl();
     include "home.php";
 }
 
