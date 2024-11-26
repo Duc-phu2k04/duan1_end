@@ -49,7 +49,7 @@ $regexEmail = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]
                 if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file)) {
                     //echo "Load ảnh thành công";
                 } else {
-                    //echo "Upload ảnh không thành công";
+                 
                 }
 
                 $id_role = 3;
