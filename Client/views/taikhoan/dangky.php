@@ -67,6 +67,7 @@ $regexEmail = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]
                 } 
                 else {
                     insert_taikhoan($nguoidung, $matkhau, $email, $img, $diachi, $sdt, $id_role);
+
                     echo '<script>
                     alert("Đăng ký thành công");
                     window.location.href = "index.php?act=dangnhap";
