@@ -5,12 +5,12 @@ ob_start();
 include("../model/pdo.php");
 include("../model/taikhoan.php");
 include("../model/binhluan.php");
-include("../model/danhmuc.php");
-include("../model/sanpham.php");
-include("../model/sptheomua.php");
+// include("../model/danhmuc.php");
+// include("../model/sanpham.php");
+// include("../model/sptheomua.php");
 include("../model/giohang.php");
 include("../model/donhang.php");
-include("global.php");
+// include("global.php");
 
 include("header.php");
 
@@ -21,6 +21,23 @@ if (!isset($_SESSION['mycart'])) {
 if (isset($_GET['act']) && $_GET['act'] != "") {
     $act = $_GET['act'];
     switch ($act) {
+        case "chitietdonhang":
+            if (isset($_GET['id']) && $_GET['id']) {
+                $giohang = load_cart($_GET['id']);
+            }
+            include "view/ct_donhang.php";
+            break;
+        case "huydonhang":
+            if (isset($_GET['id']) && $_GET['id']) {
+                 huydonhang($_GET['id']);
+                header("Location: index.php?act=tkcanhan");
+            }
+            $donhang = loadone_donhang_user($_SESSION['user']['id']);
+            $giohang = load_cart_user();
+            $taikhoan = loadone_taikhoan($id);
+        include "view/tkcanhan.php";
+        break;
+
         //Liên Hệ
         case "lienhe":
             include("view/menu/lienhe.php");
