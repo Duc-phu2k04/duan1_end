@@ -16,36 +16,46 @@ include "header.php";
 
 // Controller chính
 if (isset($_GET['act'])) {
+    // Lấy tham số act từ URL
     $act = $_GET['act'];
+
+    // Kiểm tra hành động và xử lý
     switch ($act) {
 
         // Bình luận
         case "listbl":
-            $listbl = loadall_binhluan($id_sp);
-            $listbinhluan = loadall_binhluan_admin();
-            include "binhluan/list.php";
+            $id_sp = isset($_GET['id_sp']) ? $_GET['id_sp'] : 0; // Lấy id sản phẩm từ URL
+            $listbl = loadall_binhluan($id_sp); // Lấy tất cả bình luận theo id sản phẩm
+            $listbinhluan = loadall_binhluan_admin(); // Lấy tất cả bình luận từ admin
+            // Kiểm tra và bao gồm file list.php nếu tồn tại
+            if (file_exists("sanpham/listbl.php")) {  // Sửa đường dẫn thành "sanpham/listbl.php"
+                include "sanpham/listbl.php"; // Bao gồm file quản lý bình luận
+            } else {
+                echo "File sanpham/listbl.php không tồn tại!";
+            }
             break;
 
         // Thống kê
         case "thongke":
-            $listthongke = loadall_thongke();
-            include "thongke/list.php";
+            $listthongke = loadall_thongke(); // Lấy dữ liệu thống kê
+            include "thongke/list.php"; // Bao gồm trang thống kê
             break;
 
         case "bieudo":
-            $listthongke = loadall_thongke();
-            include "thongke/bieudo.php";
+            $listthongke = loadall_thongke(); // Lấy dữ liệu thống kê
+            include "thongke/bieudo.php"; // Bao gồm trang biểu đồ
             break;
 
         // Tài khoản
         case "listtk":
-            $listtaikhoan = loadall_taikhoan();
-            $listrole = loadall_role();
-            include "taikhoan/list.php";
+            $listtaikhoan = loadall_taikhoan(); // Lấy danh sách tài khoản
+            $listrole = loadall_role(); // Lấy danh sách vai trò
+            include "taikhoan/list.php"; // Bao gồm trang quản lý tài khoản
             break;
 
         case "updatetk":
-            if (isset($_POST['capnhat']) && ($_POST['capnhat'])) {
+            // Cập nhật tài khoản
+            if (isset($_POST['capnhat']) && $_POST['capnhat']) {
                 $id = $_POST['id'];
                 $nguoidung = $_POST['nguoidung'];
                 $matkhau = $_POST['matkhau'];
@@ -58,24 +68,26 @@ if (isset($_GET['act'])) {
             }
             $listrole = loadall_role();
             $listtaikhoan = loadall_taikhoan();
-            include "taikhoan/list.php";
+            include "taikhoan/list.php"; // Bao gồm trang quản lý tài khoản
             break;
 
         case "xoatk":
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+            // Xóa tài khoản
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
                 delete_taikhoan($_GET['id']);
             }
             $listtaikhoan = loadall_taikhoan();
-            include "taikhoan/list.php";
+            include "taikhoan/list.php"; // Bao gồm trang quản lý tài khoản
             break;
 
         case "suatk":
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+            // Sửa tài khoản
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $taikhoan = loadone_taikhoan($_GET['id']);
             }
             $listrole = loadall_role();
             $listtaikhoan = loadall_taikhoan();
-            include "taikhoan/update.php";
+            include "taikhoan/update.php"; // Bao gồm trang sửa tài khoản
             break;
 
         // Don hàng
@@ -197,76 +209,7 @@ if (isset($_GET['act'])) {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $sanpham = loadone_sanpham($_GET['id']);
             }
-            $luotmua = loadall_sptheodotuoi();
-            $listdanhmuc = loadall_danhmuc();
             include "sanpham/chitietsp.php";
-            break;
-
-        case "addsp":
-            if (isset($_POST['themmoi']) && ($_POST['themmoi'])) {
-                $iddm = $_POST['iddm'];
-                $id_sptheodotuoi = $_POST['id_sptheodotuoi'];
-                $tensp = $_POST['tensp'];
-                $giasp = $_POST['giasp'];
-                $mota = $_POST['mota'];
-                $soluong = $_POST['soluong'];
-                $luotxem = $_POST['luotxem'];
-                $trangthai = $_POST['trangthai'];
-                $hinh = $_FILES['hinh']['name'];
-                $target_dir = "../upload_file/";
-                $target_file = $target_dir . basename($_FILES["hinh"]["name"]);
-                if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
-                    // File uploaded thành công
-                }
-                insert_sanpham($tensp, $giasp, $hinh, $mota, $soluong, $luotxem, $trangthai, $iddm, $id_sptheodotuoi);
-                $thongbao = "Thêm thành công sản phẩm";
-            }
-            $luotmua = loadall_sptheodotuoi();
-            $listdanhmuc = loadall_danhmuc();
-            include "sanpham/add.php";
-            break;
-
-        case "xoasp":
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                delete_sapham($_GET['id']);
-            }
-            $listsanpham = loadall_sanpham(" ", 0);
-            include "sanpham/list.php";
-            break;
-
-        case "suasp":
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                $sanpham = loadone_sanpham($_GET['id']);
-            }
-            $listdanhmuc = loadall_danhmuc();
-            $luotmua = loadall_sptheodotuoi();
-            include "sanpham/update.php";
-            break;
-
-        case "updatesp":
-            if (isset($_POST["capnhat"]) && ($_POST["capnhat"])) {
-                $id = $_POST['id'];
-                $iddm = $_POST['iddm'];
-                $id_sptheodotuoi = $_POST['id_sptheodotuoi'];
-                $tensp = $_POST['tensp'];
-                $giasp = $_POST['giasp'];
-                $mota = $_POST['mota'];
-                $soluong = $_POST['soluong'];
-                $luotxem = $_POST['luotxem'];
-                $trangthai = $_POST['trangthai'];
-                $hinh = $_FILES['hinh']['name'];
-                $target_dir = "../upload_file/";
-                $target_file = $target_dir . basename($_FILES["hinh"]["name"]);
-                if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
-                    // File uploaded thành công
-                }
-                update_sanpham($id, $iddm, $id_sptheodotuoi, $tensp, $giasp, $mota, $soluong, $luotxem, $trangthai, $hinh);
-                $thongbao = 'Cập nhật thành công';
-            }
-            $listmua = loadall_sptheodotuoi();
-            $listdanhmuc = loadall_danhmuc();
-            $listsanpham = loadall_sanpham();
-            include "sanpham/list.php";
             break;
 
         default:
@@ -274,16 +217,7 @@ if (isset($_GET['act'])) {
             break;
     }
 } else {
-    // Nếu không có act trong URL
-    $kym = isset($_POST['listok']) && ($_POST['listok']) ? $_POST['kym'] : "";
-    $iddm = isset($_POST['listok']) && ($_POST['listok']) ? $_POST['iddm'] : 0;
-
-    $listthongke = loadall_thongke();
-    $tongdm = tinhtongdm();
-    $tongsp = tinhtongsp();
-    $tongtk = tinhtongtk();
-    $tongbl = tinhtongbl();
-    include "home.php";
+    echo "Không có hành động được chỉ định!";
 }
 
 // Bao gồm footer
