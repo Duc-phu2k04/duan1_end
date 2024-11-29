@@ -36,14 +36,13 @@ if (is_file($hinhpath)) {
                                 <?= $id ?>
                             </label></h2>
                         <h2><label for="">Tên danh mục:
-                                <?php foreach ($listdanhmuc as $danhmuc) {
-                                    extract($danhmuc);
-                                    if ($iddm === $id) {
-                                        echo $tendm;
-                                    } else {
-                                        echo "";
-                                    }
-                                } ?>
+                                <?php if (!empty($listdanhmuc) && is_array($listdanhmuc)) {
+    foreach ($listdanhmuc as $danhmuc) {
+        echo $danhmuc['ten_danhmuc']; // Thay đổi tên trường tùy theo cơ sở dữ liệu của bạn
+    }
+} else {
+    echo "Không có danh mục nào.";
+} ?>
                             </label></h2>
                         <h2><label for="">Tên sản phẩm:
                                 <?= $tensp ?>
@@ -55,16 +54,17 @@ if (is_file($hinhpath)) {
                                 <?= $mota ?>
                             </label></h2>
                         <h2><label for="">Độ tuổi :
-                                <?php
-                                foreach ($listmua as $sptheodotuoi) {
-                                    extract($sptheodotuoi);
-                                    if ($id_spthedotuoi === $id_dotuoi) {
-                                        echo $dotuoi;
-                                    } else {
-                                        echo "";
-                                    }
-                                }
-                                ?>
+                            <?php
+// Kiểm tra xem biến $listmua có tồn tại và có phải là mảng
+if (!empty($listmua) && is_array($listmua)) {
+    foreach ($listmua as $mua) {
+        echo $mua['tensp']; // Ví dụ: in tên sản phẩm
+    }
+} else {
+    echo "Không có sản phẩm nào phù hợp.";
+}
+?>
+
                             </label></h2>
                         <h2><label for="">Số lượng:
                                 <?= $soluong ?>

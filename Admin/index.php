@@ -27,11 +27,11 @@ if (isset($_GET['act'])) {
             $id_sp = isset($_GET['id_sp']) ? $_GET['id_sp'] : 0; // Lấy id sản phẩm từ URL
             $listbl = loadall_binhluan($id_sp); // Lấy tất cả bình luận theo id sản phẩm
             $listbinhluan = loadall_binhluan_admin(); // Lấy tất cả bình luận từ admin
-            // Kiểm tra và bao gồm file list.php nếu tồn tại
-            if (file_exists("sanpham/listbl.php")) {  // Sửa đường dẫn thành "sanpham/listbl.php"
-                include "sanpham/listbl.php"; // Bao gồm file quản lý bình luận
+            // Kiểm tra và bao gồm file listbl.php nếu tồn tại
+            if (file_exists("binhluan/listbl.php")) {  // Đảm bảo đường dẫn đúng
+                include "binhluan/listbl.php"; // Bao gồm file quản lý bình luận
             } else {
-                echo "File sanpham/listbl.php không tồn tại!";
+                echo "";
             }
             break;
 

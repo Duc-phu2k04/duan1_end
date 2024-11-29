@@ -22,46 +22,6 @@ function loadall_trangthai()
     return $listtrangthai;
 }
 
-// Hàm tải giỏ hàng theo id đơn hàng
-function load_cart($id_donhang)
-{
-    $sql = "SELECT
-                gh.id, 
-                gh.id_tk,
-                gh.id_sp, 
-                gh.tensp, 
-                gh.img, 
-                gh.giasp,
-                gh.soluong, 
-                gh.id_donhang,
-                dh.thoigian_mua,
-                ttdh.ten_trangthai
-            FROM giohang as gh
-            INNER JOIN donhang as dh 
-            ON gh.id_donhang = dh.id
-            INNER JOIN trangthai_donhang as ttdh
-            ON gh.id_trangthai_donhang = ttdh.id_trangthai
-            where gh.id_donhang = $id_donhang";
-    $giohang = pdo_query($sql);
-    return $giohang;
-}
-
-// Hàm tải tất cả sản phẩm
-function loadall_sanpham($kyw = " ", $iddm = 0)
-{
-    $sql = "select * from sanpham where 1";
-    if ($kyw != "") {
-        $sql .= " and tensp like '%" . $kyw . "%'";
-    }
-    if ($iddm > 0) {
-        $sql .= " and iddm ='" . $iddm . "'";
-    }
-
-    $sql .= " order by id desc";
-
-    $listsanpham = pdo_query($sql);
-    return $listsanpham;
-}
 
 // Hàm tải một đơn hàng của người dùng theo id
 function loadone_donhang_user($id)
