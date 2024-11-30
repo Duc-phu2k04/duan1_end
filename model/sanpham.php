@@ -45,7 +45,7 @@ function load_sanpham_top6()
 
 
 
-function delete_sapham($id)
+function delete_sanpham($id)
 {
     $sql = "delete from sanpham where id=" . $id;
     pdo_execute($sql);
@@ -121,3 +121,4 @@ function tang_luotxem($luotxem, $idsp)
     $sql = "UPDATE sanpham SET luotxem='$luotxem' WHERE id_sp='$idsp'";
     pdo_execute($sql);
 }
+

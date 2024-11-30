@@ -33,28 +33,28 @@ if (is_file($hinhpath)) {
                             <?php
                             foreach ($listdanhmuc as $danhmuc) {
                                 extract($danhmuc);
-                                if ($iddm == $id) {
+                                if ($iddm == $id){
                                     $s = "selected";
-                                } else {
+                                }else{
                                     $s = "";
                                 }
                                 echo '<option value="' . $id . '" ' . $s . '>' . $tendm . '</option>';
                             }
                             ?>
                         </select>
-                        <select name="id_sptheodotuoi">
-                            <option value="0" seclection>Độ tuổi</option>
+                        <select name="id_sptheomua">
+                            <option value="0" seclection>Mùa</option>
                             <?php
-                            foreach ($listmua as $sptheodotuoi) {
-                                extract($sptheodotuoi);
-                                if ($id_sptheodotuoi == $id_dotuoi) {
+                            foreach ($listmua as $sptheomua) {
+                                extract($sptheomua);
+                                if ($id_sptheomua == $id_mua){
                                     $s = "selected";
-                                } else {
+                                }else{
                                     $s = "";
                                 }
-                                echo '<option value="' . $id_dotuoi . '" ' . $s . '>' . $dotuoi . '</option>';
+                                echo '<option value="' . $id_mua . '" ' . $s . '>' . $ten_mua. '</option>';
                             }
-
+                            
                             ?>
                         </select>
                     </div>
@@ -87,16 +87,16 @@ if (is_file($hinhpath)) {
                         <input class="form-control" name="luotxem" value="<?= $luotxem ?>">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputDescribe" class="form-label">Trạng thái</label>
+                        <label for="exampleInputDescribe" class="form-label">Trang thái</label>
                         <br>
                         <input type="hidden" class="form-control" name="trangthai" value="<?= $trangthai ?>">
                         <select name="trangthai" class="form-control" id="trangthai">
-                            <option value="">Chọn</option>
+                            <option value="" >Chọn</option>
                             <option value="0">Còn hàng</option>
                             <option value="1">Hết hàng</option>
 
                         </select>
-
+                        
                     </div>
 
                     <input type="hidden" name="id" value="<?= $sanpham['id']; ?>">
@@ -116,13 +116,13 @@ if (is_file($hinhpath)) {
 
 </div>
 <script>
-function confirmUpdatesp() {
-    if (confirm("Bạn có muốn sửa sản phẩm này  không")) {
-        document.location = "index.php?act=listsp";
-    } else {
-        return false;
+    function confirmUpdatesp() {
+        if (confirm("Bạn có muốn sửa sản phẩm này  không")) {
+            document.location = "index.php?act=listsp";
+        } else {
+            return false;
+        }
     }
-}
 </script>
 
 </div>

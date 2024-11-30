@@ -10,6 +10,7 @@ include "../model/donhang.php";
 include "../model/giohang.php";
 include "../model/binhluan.php";
 include "../model/tong.php";
+include "../model/sptheomua.php";
 
 // Bao gồm header
 include "header.php";
@@ -189,37 +190,112 @@ if (isset($_GET['act'])) {
             include "danhmuc/list.php";
             break;
 
-        // Quản lý sản phẩm
-        case "listsp":
-            if (isset($_POST['listok']) && ($_POST['listok'])) {
-                $kyw = $_POST['kyw'];
-                $iddm = $_POST['iddm'];
-                $id_sp_theodotuoi = $_POST['id_sp_theodotuoi'];
+    // Sản phẩm
+    case "listsp":
+        if (isset($_POST['listok']) && ($_POST['listok'])) {
+            $kyw = $_POST['kyw'];
+            $iddm = $_POST['iddm'];
+            $id_sp_theomua = $_POST['id_sp_theomua'];
+        } else {
+            $kyw = '';
+            $iddm = 0;
+            $id_sp_theomua = 0;
+        }
+
+        $listdanhmuc = loadall_danhmuc();
+        $listsanpham = loadall_sanpham($kyw, $iddm);
+        include "sanpham/list.php";
+        break;
+
+    case "chitietsp":
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+
+            $sanpham = loadone_sanpham($_GET['id']);
+
+
+        }
+        $listmua = loadall_sptheomua();
+        $listbinhluan = loadall_binhluan_admin();
+        $listdanhmuc = loadall_danhmuc();
+        include "sanpham/chitietsp.php";
+        break;
+
+    case "addsp":
+        if (isset($_POST['themmoi']) && ($_POST['themmoi'])) {
+
+            $iddm = $_POST['iddm'];
+            $id_sptheomua = $_POST['id_sptheomua'];
+            $tensp = $_POST['tensp'];
+            $giasp = $_POST['giasp'];
+            $mota = $_POST['mota'];
+            $soluong = $_POST['soluong'];
+            $luotxem = $_POST['luotxem'];
+            $trangthai = $_POST['trangthai'];
+            $hinh = $_FILES['hinh']['name'];
+            $target_dir = "../upload_file/";
+            $target_file = $target_dir . basename($_FILES["hinh"]["name"]);
+            if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
+                //echo "Load ảnh thành công";
             } else {
-                $kyw = '';
-                $iddm = 0;
-                $id_sp_theodotuoi = 0;
+                //echo "Upload ảnh không thành công";
             }
-            $listdanhmuc = loadall_danhmuc();
-            $listsanpham = loadall_sanpham($kyw, $iddm);
-            include "sanpham/list.php";
-            break;
+            insert_sanpham($tensp, $giasp, $hinh, $mota, $soluong, $luotxem, $trangthai, $iddm, $id_sptheomua);
+            $thongbao = "Thêm thành công";
+        }
+        $listmua = loadall_sptheomua();
+        $listdanhmuc = loadall_danhmuc();
+        include "sanpham/add.php";
+        break;
 
-        case "chitietsp":
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                $sanpham = loadone_sanpham($_GET['id']);
+    case "xoasp":
+        if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+            delete_sanpham($_GET['id']);
+        }
+        $listsanpham = loadall_sanpham(" ", 0);
+        include "sanpham/list.php";
+        break;
+
+    case "suasp":
+        if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+            $sanpham = loadone_sanpham($_GET['id']);
+        }
+        $listdanhmuc = loadall_danhmuc();
+        $listmua = loadall_sptheomua();
+        include "sanpham/update.php";
+        break;
+
+    case "updatesp":
+        if (isset($_POST["capnhat"]) && ($_POST["capnhat"])) {
+            $id = $_POST['id'];
+            $iddm = $_POST['iddm'];
+            $id_sptheomua = $_POST['id_sptheomua'];
+            $tensp = $_POST['tensp'];
+            $giasp = $_POST['giasp'];
+            $mota = $_POST['mota'];
+            $soluong = $_POST['soluong'];
+            $luotxem = $_POST['luotxem'];
+            $trangthai = $_POST['trangthai'];
+            $hinh = $_FILES['hinh']['name'];
+            $target_dir = "../upload_file/";
+            $target_file = $target_dir . basename($_FILES["hinh"]["name"]);
+            if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
+                //echo "Load ảnh thành công";
+            } else {
+                // echo "Upload ảnh không thành công";
             }
-            include "sanpham/chitietsp.php";
-            break;
 
-        default:
-            echo "Action không hợp lệ!";
-            break;
-    }
-} else {
-    echo "Không có hành động được chỉ định!";
-}
+            update_sanpham($id, $iddm, $id_sptheomua, $tensp, $giasp, $mota, $soluong, $luotxem, $trangthai, $hinh);
+            $thongbao = 'Cập nhật thành công';
 
+        }
+
+        $listmua = loadall_sptheomua();
+        $listdanhmuc = loadall_danhmuc();
+        $listsanpham = loadall_sanpham();
+        include "sanpham/list.php";
+        break;
 // Bao gồm footer
-include "footer.php";
+  include "footer.php";
+    }
+}
 ?>
