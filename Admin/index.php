@@ -9,6 +9,7 @@ include "../model/thongke.php";
 include "../model/donhang.php";
 include "../model/giohang.php";
 include "../model/binhluan.php";
+include "../model/sptheochatlieu.php";
 include "../model/tong.php";
 
 // Bao gồm header
@@ -204,6 +205,33 @@ if (isset($_GET['act'])) {
             $listsanpham = loadall_sanpham($kyw, $iddm);
             include "sanpham/list.php";
             break;
+
+            case "addsp":
+                if (isset($_POST['themmoi']) && ($_POST['themmoi'])) {
+    
+                    $iddm = $_POST['iddm'];
+                    $id_sptheochatlieu = $_POST['id_sptheochatlieu'];
+                    $tensp = $_POST['tensp'];
+                    $giasp = $_POST['giasp'];
+                    $mota = $_POST['mota'];
+                    $soluong = $_POST['soluong'];
+                    $luotxem = $_POST['luotxem'];
+                    $trangthai = $_POST['trangthai'];
+                    $hinh = $_FILES['hinh']['name'];
+                    $target_dir = "../upload_file/";
+                    $target_file = $target_dir . basename($_FILES["hinh"]["name"]);
+                    if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
+                        //echo "Load ảnh thành công";
+                    } else {
+                        //echo "Upload ảnh không thành công";
+                    }
+                    insert_sanpham($tensp, $giasp, $hinh, $mota, $soluong, $luotxem, $trangthai, $iddm, $id_sptheochatlieu);
+                    $thongbao = "Thêm thành công";
+                }
+                $listchatlieu = loadall_sptheochatlieu();
+                $listdanhmuc = loadall_danhmuc();
+                include "sanpham/add.php";
+                break;
 
         case "chitietsp":
             if (isset($_GET['id']) && $_GET['id'] > 0) {
