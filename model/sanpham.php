@@ -1,9 +1,12 @@
 <?php
 
-function insert_sanpham($tensp, $giasp, $hinh, $mota, $soluong, $luotxem, $trangthai, $iddm)
+
+function insert_sanpham($tensp, $giasp, $hinh, $mota, $soluong, $luotxem, $trangthai, $iddm, $id_sptheochatlieu)
 {
-    $sql = "insert into sanpham (tensp, giasp, img , mota, soluong, luotxem, trangthai, iddm) values ('$tensp', '$giasp', '$hinh', '$mota','$soluong','$luotxem','$trangthai', '$iddm')";
+    $sql = "insert into sanpham (tensp, giasp, img , mota, soluong, luotxem, trangthai, iddm, id_sptheochatlieu) values ('$tensp', '$giasp', '$hinh', '$mota','$soluong','$luotxem','$trangthai', '$iddm',  '$id_sptheochatlieu')";
     pdo_execute($sql);
+
+
 }
 
 
@@ -69,21 +72,27 @@ function loadall_sanpham($kyw = " ", $iddm = 0)
     return $listsanpham;
 }
 
-function loadall_sptheodotuoi($kyw = " ", $id_sptheodotuoi = 0)
+
+function loadall_sp_theochatlieu($kyw = " ", $id_sptheochatlieu = 0)
+
 {
     $sql = "select * from sanpham where 1";
     if ($kyw != "") {
         $sql .= " and tensp like '%" . $kyw . "%'";
     }
-    if ($id_sptheodotuoi > 0) {
-        $sql .= " and id_sptheomua ='" . $id_sptheodotuoi . "'";
+
+    if ($id_sptheochatlieu > 0) {
+        $sql .= " and id_sptheochatlieu ='" . $id_sptheochatlieu . "'";
+
     }
 
     $sql .= " order by id desc";
 
-    $listsp_theodotuoi = pdo_query($sql);
-    return $listsp_theodotuoi;
+
+    $listsp_theochatlieu = pdo_query($sql);
+    return $listsp_theochatlieu;
 }
+
 
 
 function loadone_sanpham($id)
@@ -106,18 +115,22 @@ function loadone_sanpham($id)
 // }
 
 
-function update_sanpham($id, $iddm, $id_sptheodotuoi, $tensp, $giasp, $mota, $soluong, $luotxem, $trangthai, $hinh)
+
+function update_sanpham($id, $iddm, $id_sptheochatlieu, $tensp, $giasp, $mota, $soluong, $luotxem, $trangthai, $hinh)
 {
     if ($hinh != "") {
-        $sql = " update sanpham set iddm = '" . $iddm . "' , id_sptheomua = '" . $id_sptheodotuoi . "' , tensp = '" . $tensp . "', giasp = '" . $giasp . " ', mota = '" . $mota . "', soluong='" . $soluong . "', luotxem='" . $luotxem . "', trangthai='" . $trangthai . "', img = '" . $hinh . "' where id = " . $id;
+        $sql = " update sanpham set iddm = '" . $iddm . "' , id_sptheochatlieu = '" . $id_sptheochatlieu . "' , tensp = '" . $tensp . "', giasp = '" . $giasp . " ', mota = '" . $mota . "', soluong='" . $soluong . "', luotxem='" . $luotxem . "', trangthai='" . $trangthai . "', img = '" . $hinh . "' where id = " . $id;
     } else {
-        $sql = " update sanpham set iddm = '" . $iddm . "' , id_sptheomua = '" . $id_sptheodotuoi . "' , tensp = '" . $tensp . "', giasp = '" . $giasp . " ', mota = '" . $mota . "', soluong='" . $soluong . "', luotxem='" . $luotxem . "', trangthai='" . $trangthai . "' where id = " . $id;
+        $sql = " update sanpham set iddm = '" . $iddm . "' , id_sptheochatlieu = '" . $id_sptheochatlieu . "' , tensp = '" . $tensp . "', giasp = '" . $giasp . " ', mota = '" . $mota . "', soluong='" . $soluong . "', luotxem='" . $luotxem . "', trangthai='" . $trangthai . "' where id = " . $id;
+
     }
     pdo_execute($sql);
 }
 
-function tang_luotxem($luotxem, $idsp)
-{
+
+function tang_luotxem($luotxem,$idsp){
     $sql = "UPDATE sanpham SET luotxem='$luotxem' WHERE id_sp='$idsp'";
     pdo_execute($sql);
 }
+
+?>

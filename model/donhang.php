@@ -23,7 +23,8 @@ function loadall_trangthai()
 }
 
 
-// Hàm tải một đơn hàng của người dùng theo id
+
+
 function loadone_donhang_user($id)
 {
     $sql = "SELECT 
