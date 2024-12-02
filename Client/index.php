@@ -39,7 +39,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             $donhang = loadone_donhang_user($_SESSION['user']['id']);
             $giohang = load_cart_user();
             $taikhoan = loadone_taikhoan($id);
-            include('view/tkcanhan.php');
+            include('views/tkcanhan.php');
             break;
         case "capnhattk":
 
@@ -63,7 +63,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
 
             }
             $taikhoan = loadone_taikhoan($id);
-            include "view/capnhattk.php";
+            include "views/capnhattk.php";
             break;
 
         case "doimk":
@@ -75,7 +75,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
 
             }
             $taikhoan = loadone_taikhoan($id);
-            include "view/doimk.php";
+            include "views/doimk.php";
             break;
 
 
