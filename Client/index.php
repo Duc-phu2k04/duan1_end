@@ -149,7 +149,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     $sanpham = loadone_sanpham($_GET['id']);
                 }
                 $sanphamtop6 = load_sanpham_top6();
-                include "./views/chitietsp.php";
+                include "./view/chitietsp.php";
                 break;
 
         
