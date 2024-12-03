@@ -64,7 +64,7 @@ if (isset($_POST["dangxuat"])) {
 					<div class="row">
 						<div class="col-sm-12 col-md-2">
 							<div class="logo">
-								<a href="index.php"><H2>Rolexion</H2></a>
+								<a href="index.php"><H2>Rolex</H2></a>
 							</div>
 						</div>
 

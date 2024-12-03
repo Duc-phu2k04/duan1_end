@@ -21,8 +21,8 @@ if (is_array($donhang)) {
                 <form action="index.php?act=updatedh" method="post">
                     <div class="mb-3">
                         <label for="exampleInputId" class="form-label">Mã đơn hàng</label>
-                        <input type="hidden" class="form-control" name="id" value="<?= $id ?>">
-                        <input type="text" class="form-control" name="id" value="<?= $id ?>" >
+                        <input type="hidden" class="form-control" name="id" value="<?= $id ?>" disable>
+                        <input type="text" class="form-control" name="id" value="<?= $id ?>" disable>
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputName" class="form-label">Tên khách hàng</label>

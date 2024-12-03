@@ -5,7 +5,6 @@ ob_start();
 include("../model/pdo.php");
 include("../model/taikhoan.php");
 include("../model/binhluan.php");
-
 include("../model/danhmuc.php");
 include("../model/sanpham.php");
 include("../model/sptheochatlieu.php");
@@ -167,15 +166,15 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             break;
 
         case "sptheochatlieu":
-            if (isset($_GET['id_sptheochatlieu']) && ($_GET['id_sptheochatlieu']) > 0) {
-                $id_sptheochatlieu = $_GET['id_sptheochatlieu'];
-                $id_sptheochatlieu = loadone_sptheochatlieu($_GET['id_sptheochatlieu']);
+            if (isset($_GET['id_chatlieu']) && ($_GET['id_chatlieu']) > 0) {
+                $id_chatlieu = $_GET['id_chatlieu'];
+                $id_chatlieu = loadone_sptheochatlieu($_GET['id_chatlieu']);
             } else {
-                $id_sptheochatlieu= 0;
+                $id_chatlieu= 0;
             }
             $listsptheochatlieu = loadall_sptheochatlieu();
-            $listsp_theochatlieu = loadall_sp_theochatlieu("", $id_sptheochatlieu);
-            include "view/sphamtheochatlieu.php";
+            $listsp_theochatlieu = loadall_sp_theochatlieu("", $id_chatlieu);
+            include "view/sptheochatlieu.php";
             break;
 
 

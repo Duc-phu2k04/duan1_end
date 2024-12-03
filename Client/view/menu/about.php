@@ -39,19 +39,31 @@
         <div class="teams owl-carousel nav-center-center nav-style7" data-loop="true" data-nav="true" data-dots="false"
             data-margin="30" data-responsive='{"0":{"items":1},"600":{"items":2},"1000":{"items":3}}'>
                 </div>
+                <div class="avatar">
+                    <img src="img/h2.jpg" style="height: 700px;" alt="">
+                </div>
                 <div class="info">
                     <h3 class="name">Trịnh Quốc Hưng</h3>
                     <span class="position">Sinh viên lập trình Web</span>
                 </div>
             </div>
+                <div class="avatar">
+                    <img src="images/teams/VU.jpg" style="height: 700px;" alt="">
+                </div>
                 <div class="info">
                     <h3 class="name">Nguyễn Đức Phú</h3>
                     <span class="position">Sinh viên lập trình Web</span>
                 </div>
             </div>
+                <div class="avatar">
+                    <img src="img/h1.jpg" style="height: 700px;" alt="">
+                </div>
                 <div class="info">
                     <h3 class="name">Lê Khải Hoàn</h3>
                     <span class="position">Sinh viên lập trình Web</span>
+                </div>
+                <div class="avatar">
+                    <img src="images/teams/VU.jpg" style="height: 700px;" alt="">
                 </div>
                 <div class="info">
                     <h3 class="name">Nguyễn Vũ Trọng Bằng</h3>

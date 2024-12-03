@@ -1,6 +1,4 @@
 <?php
-
-
 if (is_array($sanpham)) {
     extract($sanpham);
 }
@@ -10,7 +8,6 @@ if (is_file($hinhpath)) {
 } else {
     $img = "no photo";
 }
-
 ?>
 
 <div class="container-fluid">
@@ -22,9 +19,7 @@ if (is_file($hinhpath)) {
             <h4 class="m-0 font-weight-bold text-primary">Sửa sản phẩm</h4>
         </div>
         <div class="card-body">
-
             <div class="table-responsive">
-
                 <br>
                 <form action="index.php?act=updatesp" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
@@ -33,31 +28,39 @@ if (is_file($hinhpath)) {
                             <?php
                             foreach ($listdanhmuc as $danhmuc) {
                                 extract($danhmuc);
-                                if ($iddm == $id){
-                                    $s = "selected";
-                                }else{
-                                    $s = "";
-                                }
+                                $s = ($iddm == $id) ? "selected" : "";
                                 echo '<option value="' . $id . '" ' . $s . '>' . $tendm . '</option>';
                             }
                             ?>
                         </select>
+                    </div>
+
+                    <!-- Chọn mùa hoặc chất liệu -->
+                    <div class="mb-3">
+                        <select name="id_sptheomua">
+                            <option value="0" seclection>Mùa</option>
+                            <?php
+                            foreach ($listmua as $sptheomua) {
+                                extract($sptheomua);
+                                $s = ($id_sptheomua == $id_mua) ? "selected" : "";
+                                echo '<option value="' . $id_mua . '" ' . $s . '>' . $ten_mua . '</option>';
+                            }
+                            ?>
+                        </select>
+
                         <select name="id_sptheochatlieu">
                             <option value="0" seclection>Chất liệu</option>
                             <?php
                             foreach ($listchatlieu as $sptheochatlieu) {
                                 extract($sptheochatlieu);
-                                if ($id_sptheochatlieu == $id_chatlieu){
-                                    $s = "selected";
-                                }else{
-                                    $s = "";
-                                }
-                                echo '<option value="' . $id_chatlieu . '" ' . $s . '>' . $ten_chatlieu. '</option>';
+                                $s = ($id_sptheochatlieu == $id_chatlieu) ? "selected" : "";
+                                echo '<option value="' . $id_chatlieu . '" ' . $s . '>' . $ten_chatlieu . '</option>';
                             }
-                            
                             ?>
                         </select>
                     </div>
+
+                    <!-- Các trường thông tin sản phẩm -->
                     <div class="mb-3">
                         <label for="exampleInputName" class="form-label">Tên sản phẩm</label>
                         <input type="text" class="form-control" name="tensp" value="<?= $tensp ?>">
@@ -72,7 +75,6 @@ if (is_file($hinhpath)) {
                         <?= $img ?>
                         <br>
                         <input type="file" class="mt-2" name="hinh">
-
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputDescribe" class="form-label">Mô tả</label>
@@ -91,17 +93,14 @@ if (is_file($hinhpath)) {
                         <br>
                         <input type="hidden" class="form-control" name="trangthai" value="<?= $trangthai ?>">
                         <select name="trangthai" class="form-control" id="trangthai">
-                            <option value="" >Chọn</option>
-                            <option value="0">Còn hàng</option>
-                            <option value="1">Hết hàng</option>
-
+                            <option value="">Chọn</option>
+                            <option value="0" <?= ($trangthai == 0) ? "selected" : "" ?>>Còn hàng</option>
+                            <option value="1" <?= ($trangthai == 1) ? "selected" : "" ?>>Hết hàng</option>
                         </select>
-                        
                     </div>
 
                     <input type="hidden" name="id" value="<?= $sanpham['id']; ?>">
-                    <input type="submit" class="btn btn-success" name="capnhat" onclick="return confirmUpdatesp()"
-                        value="Cập nhật">
+                    <input type="submit" class="btn btn-success" name="capnhat" onclick="return confirmUpdatesp()" value="Cập nhật">
                     <input type="reset" class="btn btn-info" value="Nhập lại">
                     <a href="index.php?act=listsp"><input type="button" class="btn btn-primary" value="Danh sách"></a>
 
@@ -113,11 +112,11 @@ if (is_file($hinhpath)) {
             </div>
         </div>
     </div>
-
 </div>
+
 <script>
     function confirmUpdatesp() {
-        if (confirm("Bạn có muốn sửa sản phẩm này  không")) {
+        if (confirm("Bạn có muốn sửa sản phẩm này không?")) {
             document.location = "index.php?act=listsp";
         } else {
             return false;

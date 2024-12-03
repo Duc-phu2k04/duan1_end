@@ -36,7 +36,7 @@
 
 <!-- End Imgslide -->
 
-<?php include "views/menu/3hopcn.php"; ?>
+<?php include "view/menu/3hopcn.php"; ?>
 
 <div class="container">
 	<div class="margin-top-30">

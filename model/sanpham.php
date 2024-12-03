@@ -1,9 +1,9 @@
 <?php
 
 
-function insert_sanpham($tensp, $giasp, $hinh, $mota, $soluong, $luotxem, $trangthai, $iddm, $id_sptheochatlieu)
+function insert_sanpham($tensp, $giasp, $hinh, $mota, $soluong, $luotxem, $trangthai, $iddm, $id_chatlieu)
 {
-    $sql = "insert into sanpham (tensp, giasp, img , mota, soluong, luotxem, trangthai, iddm, id_sptheochatlieu) values ('$tensp', '$giasp', '$hinh', '$mota','$soluong','$luotxem','$trangthai', '$iddm',  '$id_sptheochatlieu')";
+    $sql = "insert into sanpham (tensp, giasp, img , mota, soluong, luotxem, trangthai, iddm, id_chatlieu) values ('$tensp', '$giasp', '$hinh', '$mota','$soluong','$luotxem','$trangthai', '$iddm',  '$id_chatlieu')";
     pdo_execute($sql);
 
 
@@ -26,7 +26,7 @@ function loadall_sanpham_top10()
 
 function loadall_shop($kyw = " ", $iddm = 0)
 {
-    $sql = "select * from sanpham where 1";
+    $sql = "select * from sanpham where 1"; // Câu lệnh SQL cơ bản
     if ($kyw != "") {
         $sql .= " and tensp like '%" . $kyw . "%'";
     }
@@ -34,10 +34,19 @@ function loadall_shop($kyw = " ", $iddm = 0)
         $sql .= " and iddm ='" . $iddm . "'";
     }
     $sql .= " order by luotxem asc limit 0, 10";
-    // $sql = "select * from sanpham where 1 order by id desc ";
+
+    // Thực hiện truy vấn
     $sanphamShop = pdo_query($sql);
-    return $sanphamShop;
+
+    // Kiểm tra nếu $sanphamShop là null hoặc không phải là mảng
+    if ($sanphamShop === null || !is_array($sanphamShop)) {
+        return [];  // Trả về mảng rỗng nếu không có sản phẩm
+    }
+
+    return $sanphamShop;  // Trả về kết quả hợp lệ
 }
+
+
 
 function load_sanpham_top6()
 {
@@ -48,7 +57,7 @@ function load_sanpham_top6()
 
 
 
-function delete_sapham($id)
+function delete_sanpham($id)
 {
     $sql = "delete from sanpham where id=" . $id;
     pdo_execute($sql);
@@ -73,7 +82,7 @@ function loadall_sanpham($kyw = " ", $iddm = 0)
 }
 
 
-function loadall_sp_theochatlieu($kyw = " ", $id_sptheochatlieu = 0)
+function loadall_sp_theochatlieu($kyw = " ", $id_chatlieu = 0)
 
 {
     $sql = "select * from sanpham where 1";
@@ -81,16 +90,16 @@ function loadall_sp_theochatlieu($kyw = " ", $id_sptheochatlieu = 0)
         $sql .= " and tensp like '%" . $kyw . "%'";
     }
 
-    if ($id_sptheochatlieu > 0) {
-        $sql .= " and id_sptheochatlieu ='" . $id_sptheochatlieu . "'";
+    if ($id_chatlieu > 0) {
+        $sql .= " and id_chatlieu ='" . $id_chatlieu . "'";
 
     }
 
     $sql .= " order by id desc";
 
 
-    $listsp_theochatlieu = pdo_query($sql);
-    return $listsp_theochatlieu;
+    $listchatlieu = pdo_query($sql);
+    return  $listchatlieu;
 }
 
 
@@ -116,12 +125,12 @@ function loadone_sanpham($id)
 
 
 
-function update_sanpham($id, $iddm, $id_sptheochatlieu, $tensp, $giasp, $mota, $soluong, $luotxem, $trangthai, $hinh)
+function update_sanpham($id, $iddm, $id_chatlieu, $tensp, $giasp, $mota, $soluong, $luotxem, $trangthai, $hinh)
 {
     if ($hinh != "") {
-        $sql = " update sanpham set iddm = '" . $iddm . "' , id_sptheochatlieu = '" . $id_sptheochatlieu . "' , tensp = '" . $tensp . "', giasp = '" . $giasp . " ', mota = '" . $mota . "', soluong='" . $soluong . "', luotxem='" . $luotxem . "', trangthai='" . $trangthai . "', img = '" . $hinh . "' where id = " . $id;
+        $sql = " update sanpham set iddm = '" . $iddm . "' , id_chatlieu = '" . $id_chatlieu . "' , tensp = '" . $tensp . "', giasp = '" . $giasp . " ', mota = '" . $mota . "', soluong='" . $soluong . "', luotxem='" . $luotxem . "', trangthai='" . $trangthai . "', img = '" . $hinh . "' where id = " . $id;
     } else {
-        $sql = " update sanpham set iddm = '" . $iddm . "' , id_sptheochatlieu = '" . $id_sptheochatlieu . "' , tensp = '" . $tensp . "', giasp = '" . $giasp . " ', mota = '" . $mota . "', soluong='" . $soluong . "', luotxem='" . $luotxem . "', trangthai='" . $trangthai . "' where id = " . $id;
+        $sql = " update sanpham set iddm = '" . $iddm . "' , id_chatlieu = '" . $id_chatlieu . "' , tensp = '" . $tensp . "', giasp = '" . $giasp . " ', mota = '" . $mota . "', soluong='" . $soluong . "', luotxem='" . $luotxem . "', trangthai='" . $trangthai . "' where id = " . $id;
 
     }
     pdo_execute($sql);
@@ -133,4 +142,7 @@ function tang_luotxem($luotxem,$idsp){
     pdo_execute($sql);
 }
 
+
+
 ?>
+

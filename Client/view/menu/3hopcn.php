@@ -5,7 +5,7 @@
                 <div class="element-icon style2">
 					<div class="icon"><i class="flaticon flaticon-origami28"></i></div>
 					<div class="content">
-						<h4 class="title">FMIỄN PHÍ VẬN CHUYỂN TOÀN CẦU</h4>
+						<h4 class="title">MIỄN PHÍ VẬN CHUYỂN TOÀN CẦU</h4>
 					</div>
 				</div>
 			</div>
