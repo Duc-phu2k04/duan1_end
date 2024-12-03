@@ -11,7 +11,7 @@ include "../model/giohang.php";
 include "../model/binhluan.php";
 include "../model/sptheochatlieu.php";
 include "../model/tong.php";
-include "../model/sptheomua.php";
+
 
 // Bao gồm header
 include "header.php";
@@ -115,13 +115,13 @@ if (isset($_GET['act'])) {
             include "donhang/update.php";
             break;
 
-        case "xoadh":
-            if (isset($_GET['id']) && ($_GET['id'])) {
-                delete_donhang($_GET['id']);
-            }
-            $listdonhang = loadall_donhang();
-            include "donhang/list.php";
-            break;
+        // case "xoadh":
+        //     if (isset($_GET['id']) && ($_GET['id'])) {
+        //         delete_donhang($_GET['id']);
+        //     }
+        //     $listdonhang = loadall_donhang();
+        //     include "donhang/list.php";
+        //     break;
 
         case "updatedh":
             if (isset($_POST["capnhat"]) && ($_POST["capnhat"])) {
@@ -196,15 +196,15 @@ if (isset($_GET['act'])) {
             if (isset($_POST['listok']) && ($_POST['listok'])) {
                 $kyw = $_POST['kyw'];
                 $iddm = $_POST['iddm'];
-                $id_sp_theomua = $_POST['id_sp_theomua'];
+                $id_sp_theochatlieu = $_POST['id_sp_theochatlieu'];
             } else {
                 $kyw = '';
                 $iddm = 0;
-                $id_sp_theomua = 0;
+                $id_sp_theochatlieu = 0;
             }
 
             $listdanhmuc = loadall_danhmuc();
-            $listsanpham = loadall_sanpham($kyw, $iddm, $id_sp_theomua);
+            $listsanpham = loadall_sanpham($kyw, $iddm, $id_sp_theochatlieu);
             include "sanpham/list.php";
             break;
 
@@ -215,7 +215,7 @@ if (isset($_GET['act'])) {
                 $mota = $_POST['mota'];
                 $img = $_FILES['hinh']['name'];
                 $iddm = $_POST['iddm'];
-                $id_sp_theomua = $_POST['id_sp_theomua'];
+                $id_sptheochatlieu = $_POST['id_sptheochatlieu'];
 
                 $target_dir = "../upload_file/";
                 $target_file = $target_dir . basename($_FILES["hinh"]["name"]);
@@ -223,11 +223,11 @@ if (isset($_GET['act'])) {
                     // File uploaded thành công
                 }
 
-                insert_sanpham($tensp, $giasp, $hinh, $mota, $soluong, $luotxem, $trangthai, $iddm, $id_chatlieu);
+                insert_sanpham($tensp, $giasp, $hinh, $mota, $soluong, $luotxem, $trangthai, $iddm, $id_sptheochatlieu);
                 $thongbao = "Thêm thành công sản phẩm";
             }
             $listdanhmuc = loadall_danhmuc();
-            $listsp_theomua = loadall_sp_theochatlieu();
+            $listsp_theochatlieu = loadall_sp_theochatlieu();
             include "sanpham/add.php";
             break;
 
@@ -236,7 +236,7 @@ if (isset($_GET['act'])) {
                 $sanpham = loadone_sanpham($_GET['id']);
             }
             $listdanhmuc = loadall_danhmuc();
-            $listsp_theomua = loadall_sp_theochatlieu();
+            $listsp_theochatlieu = loadall_sp_theochatlieu();
             include "sanpham/update.php";
             break;
 
@@ -245,8 +245,21 @@ if (isset($_GET['act'])) {
                 delete_sanpham($_GET['id']);
             }
             $listdanhmuc = loadall_danhmuc();
-            $listsanpham = loadall_sanpham($kyw, $iddm, $id_sp_theomua);
+            $listsanpham = loadall_sanpham($kyw, $iddm, $id_sp_theochatlieu);
             include "sanpham/list.php";
             break;
+
+            case "chitietsp":
+                if (isset($_GET['id']) && $_GET['id'] > 0) {
+    
+                    $sanpham = loadone_sanpham($_GET['id']);
+    
+    
+                }
+                $listchatlieu = loadall_sptheochatlieu();
+                $listbinhluan = loadall_binhluan_admin();
+                $listdanhmuc = loadall_danhmuc();
+                include "sanpham/chitietsp.php";
+                break;
     }
 }

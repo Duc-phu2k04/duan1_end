@@ -38,7 +38,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             $donhang = loadone_donhang_user($_SESSION['user']['id']);
             $giohang = load_cart_user();
             $taikhoan = loadone_taikhoan($id);
-            include('views/tkcanhan.php');
+            include('view/tkcanhan.php');
             break;
         case "capnhattk":
 
