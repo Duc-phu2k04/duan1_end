@@ -214,7 +214,7 @@ if (isset($_GET['act'])) {
 
 
         }
-        $listmua = loadall_sptheomua();
+        $listmua = loadall_sptheochatlieu();
         $listbinhluan = loadall_binhluan_admin();
         $listdanhmuc = loadall_danhmuc();
         include "sanpham/chitietsp.php";
@@ -242,7 +242,7 @@ if (isset($_GET['act'])) {
             insert_sanpham($tensp, $giasp, $hinh, $mota, $soluong, $luotxem, $trangthai, $iddm, $id_sptheomua);
             $thongbao = "Thêm thành công";
         }
-        $listmua = loadall_sptheomua();
+        $listmua = loadall_sptheochatlieu();
         $listdanhmuc = loadall_danhmuc();
         include "sanpham/add.php";
         break;
@@ -260,7 +260,7 @@ if (isset($_GET['act'])) {
             $sanpham = loadone_sanpham($_GET['id']);
         }
         $listdanhmuc = loadall_danhmuc();
-        $listmua = loadall_sptheomua();
+        $listmua = loadall_sptheochatlieu();
         include "sanpham/update.php";
         break;
 
@@ -289,7 +289,7 @@ if (isset($_GET['act'])) {
 
         }
 
-        $listmua = loadall_sptheomua();
+        $listmua = loadall_sptheochatlieu();
         $listdanhmuc = loadall_danhmuc();
         $listsanpham = loadall_sanpham();
         include "sanpham/list.php";
