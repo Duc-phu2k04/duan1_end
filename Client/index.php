@@ -116,6 +116,43 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             include("view/sanpham.php");
             break;
 
+            case "chitietsp":
+                if (isset($_POST['addtocart']) && ($_POST['addtocart'])) {
+                    $id = $_POST['id'];
+                    $tensp = $_POST['tensp'];
+                    $img = $_POST['img'];
+                    $giasp = $_POST['giasp'];
+                    $soluong = $_POST['soluong'];
+                    $thanhtien = ((int) $soluong * (int) $giasp);
+                    $sanphamadd = [$id, $tensp, $img, $giasp, $soluong, $thanhtien];
+                    
+                    if (isset($_SESSION['mycart'])) {
+                        $cartItems = $_SESSION['mycart'];
+                        $existingItemKey = null;
+                        foreach ($cartItems as $key => $item) {
+                            if ($item[0] == $id) {
+                                $existingItemKey = $key;
+                                break;
+                            }
+                        }
+                    }
+                    if ($existingItemKey !== null) {
+                        $cartItems[$existingItemKey][5] += $thanhtien;
+                        $cartItems[$existingItemKey][4]++;
+                    } else {
+    
+                        array_push($cartItems, $sanphamadd);
+                    }
+                    $_SESSION['mycart'] = $cartItems;
+                }
+    
+                if (isset($_GET['id']) && $_GET['id'] > 0) {
+                    $sanpham = loadone_sanpham($_GET['id']);
+                }
+                $sanphamtop6 = load_sanpham_top6();
+                include "./views/chitietsp.php";
+                break;
+
         
 
         case "timkiemdm":
