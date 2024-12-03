@@ -11,7 +11,7 @@ include "../model/giohang.php";
 include "../model/binhluan.php";
 include "../model/sptheochatlieu.php";
 include "../model/tong.php";
-include "../model/sptheomua.php";
+
 
 // Bao gồm header
 include "header.php";
