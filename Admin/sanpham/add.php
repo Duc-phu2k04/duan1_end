@@ -27,12 +27,12 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="exampleInputName" class="form-label">Mùa</label>
-                        <select name="id_sptheomua" id="">
+                        <label for="exampleInputName" class="form-label">Chất liệu</label>
+                        <select name="id_sptheochatlieu" id="">
                             <?php
-                            foreach ($listmua as $sptheomua) {
-                                extract($sptheomua);
-                                echo '<option value="' . $id_mua. '"> ' . $ten_mua . '</option>';
+                            foreach ($listchatlieu as $sptheochatlieu) {
+                                extract($sptheochatlieu);
+                                echo '<option value="' . $id_chatlieu. '"> ' . $ten_chatlieu . '</option>';
                             }
                             ?>
 
