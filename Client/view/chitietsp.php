@@ -64,9 +64,6 @@ if (isset($_SESSION['nguoidung']) && (is_array($_SESSION['nguoidung']))) {
                                 <?= $mota ?>
 
                             </div>
-
-
-
                             <a class="button button-add-cart" data-quantity="1" href="index.php?act=thanhtoan">Mua</a>
 
                             <input type="submit" class="button button-add-cart" name="addtocart"
@@ -82,9 +79,11 @@ if (isset($_SESSION['nguoidung']) && (is_array($_SESSION['nguoidung']))) {
 <div class="container">
 
     <iframe src="./view/binhluanform.php?id_sp=<?php if (is_array($sanpham)) {
-                                                    extract($sanpham);
-                                                }
-                                                echo $id; ?>" width="100%" height="300px" frameborder="0"></iframe>
+
+        extract($sanpham);
+    }
+    echo $id; ?>" width="100%" height="300px" frameborder="0"></iframe>
+
 
 
     <div class="comment">
@@ -100,8 +99,9 @@ if (isset($_SESSION['nguoidung']) && (is_array($_SESSION['nguoidung']))) {
 
                     extract($sanpham);
                     $hinh = "../upload_file/" . $img;
-                    $linksp = "index.php?act=chitietsp&id=" . $id;
-                ?>
+
+                    ?>
+
                     <form action="index.php?act=addgiohang" method="post">
                         <li class="product-item">
                             <div class="product-inner">
