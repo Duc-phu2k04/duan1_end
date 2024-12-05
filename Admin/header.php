@@ -37,12 +37,6 @@
                 Chức năng
             </div>
             <li class="nav-item">
-                <a class="nav-link" href="index.php?act=listbl">
-                    <i class="fas fa-fw fa-box-open"></i>
-                    <span>Quản lý bình luận</span></a>
-            </li>
-
-            <li class="nav-item">
                 <a class="nav-link" href="index.php?act=listtk">
                     <i class="fas fa-fw fa-user-circle"></i>
                     <span>Quản lý tài khoản</span></a>
