@@ -57,6 +57,7 @@
                                     <a href="' . $xoasp . '"  onclick="return confirmDeletesp()"><input type="button" class=" form-control btn btn-danger mt-2" value="Xóa"></a>
                                 </td> 
                                 </tr>';
+
                         }
                         ?>
                     </tbody>
@@ -72,11 +73,11 @@
 
 
 <script>
-function confirmDeletesp() {
-    if (confirm("Bạn có muốn xóa sản phẩm này không ?")) {
-        document.location = "index.php?act=listsp";
-    } else {
-        return false;
+    function confirmDeletesp() {
+        if (confirm("Bạn có muốn xóa sản phẩm này không ?")) {
+            document.location = "index.php?act=listsp";
+        } else {
+            return false;
+        }
     }
-}
 </script>

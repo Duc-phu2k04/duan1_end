@@ -36,13 +36,14 @@ if (is_file($hinhpath)) {
                                 <?= $id ?>
                             </label></h2>
                         <h2><label for="">Tên danh mục:
-                                <?php if (!empty($listdanhmuc) && is_array($listdanhmuc)) {
-    foreach ($listdanhmuc as $danhmuc) {
-        echo $danhmuc['ten_danhmuc']; // Thay đổi tên trường tùy theo cơ sở dữ liệu của bạn
-    }
-} else {
-    echo "Không có danh mục nào.";
-} ?>
+                                <?php foreach ($listdanhmuc as $danhmuc) {
+                                    extract($danhmuc);
+                                    if ($iddm === $id) {
+                                        echo $tendm;
+                                    } else {
+                                        echo "";
+                                    }
+                                } ?>
                             </label></h2>
                         <h2><label for="">Tên sản phẩm:
                                 <?= $tensp ?>
@@ -53,18 +54,17 @@ if (is_file($hinhpath)) {
                         <h2><label for="">Mô tả:
                                 <?= $mota ?>
                             </label></h2>
-                        <h2><label for="">Độ tuổi :
-                            <?php
-// Kiểm tra xem biến $listmua có tồn tại và có phải là mảng
-if (!empty($listmua) && is_array($listmua)) {
-    foreach ($listmua as $mua) {
-        echo $mua['tensp']; // Ví dụ: in tên sản phẩm
-    }
-} else {
-    echo "Không có sản phẩm nào phù hợp.";
-}
-?>
-
+                        <h2><label for="">Mùa :
+                                <?php
+                                foreach ($listchatlieu as $sptheochatlieu) {
+                                    extract($sptheochatlieu);
+                                    if ($id_sptheochatlieu === $id_chatlieu) {
+                                        echo $ten_chatlieu;
+                                    } else {
+                                        echo "";
+                                    }
+                                }
+                                ?>
                             </label></h2>
                         <h2><label for="">Số lượng:
                                 <?= $soluong ?>
@@ -81,10 +81,10 @@ if (!empty($listmua) && is_array($listmua)) {
             </div>
             <br>
 
-            <iframe src="./sanpham/listbl.php?id_sp=<?php if (is_array($sanpham)) {
-                                                        extract($sanpham);
-                                                    }
-                                                    echo $id; ?>" width="100%" height="300px" frameborder="0"></iframe>
+            <iframe src="./sanpham/listbl.php?id_sp=<?php if(is_array($sanpham)){
+                extract($sanpham);
+            } 
+            echo $id;?>" width="100%" height="300px" frameborder="0"></iframe>
             <div class="row">
                 <div class="function-back">
                     <a href="index.php?act=listsp"><input type="submit" class="btn btn-primary"
@@ -99,10 +99,9 @@ if (!empty($listmua) && is_array($listmua)) {
         </div>
     </div>
     <br>
+    
+    <?php //include "listbl.php"; ?>
 
-    <?php //include "listbl.php"; 
-    ?>
-
-    <!--End Content -->
+<!--End Content -->
 
 </div>

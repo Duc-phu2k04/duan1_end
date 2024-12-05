@@ -49,7 +49,7 @@ $regexEmail = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]
                 if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file)) {
                     //echo "Load ảnh thành công";
                 } else {
-                 
+                    //echo "Upload ảnh không thành công";
                 }
 
                 $id_role = 3;
@@ -67,11 +67,8 @@ $regexEmail = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]
                 } 
                 else {
                     insert_taikhoan($nguoidung, $matkhau, $email, $img, $diachi, $sdt, $id_role);
-
-                    echo '<script>
-                    alert("Đăng ký thành công");
-                    window.location.href = "index.php?act=dangnhap";
-                </script>';
+                    echo "<span style='color:green;'>Đăng ký thành công</span>";
+                    // header("Location: index.php?act=dangnhap");
                 }
 
             } ?>
@@ -91,6 +88,16 @@ $regexEmail = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]
     </div>
 
     <script>
+
+
+        function confirmDangkytk() {
+            if (confirm("Bạn có muốn đăng ký tài khoản này không")) {
+                document.location = "index.php?act=dangnhap";
+                alert("Đăng ký thành công");
+            } else {
+                return false;
+            }
+        }
         function myFunction() {
             var x = document.getElementById("password");
             if (x.type === "password") {
