@@ -165,17 +165,18 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             include "view/timkiemdm.php";
             break;
 
-        case "sptheochatlieu":
-            if (isset($_GET['id_chatlieu']) && ($_GET['id_chatlieu']) > 0) {
-                $id_chatlieu = $_GET['id_chatlieu'];
-                $id_chatlieu = loadone_sptheochatlieu($_GET['id_chatlieu']);
-            } else {
-                $id_chatlieu= 0;
-            }
-            $listsptheochatlieu = loadall_sptheochatlieu();
-            $listsp_theochatlieu = loadall_sp_theochatlieu("", $id_chatlieu);
-            include "view/sptheochatlieu.php";
-            break;
+            case "sptheochatlieu":
+                if (isset($_GET['id_sptheochatlieu']) && ($_GET['id_sptheochatlieu']) > 0) {
+                    $id_sptheochatlieu = $_GET['id_sptheochatlieu'];
+                    $sptheochatlieu = loadone_sptheochatlieu($_GET['id_sptheochatlieu']);
+                } else {
+                    $id_sptheochatlieu = 0;
+                }
+                $listsptheochatlieu = loadall_sptheochatlieu();
+                $listsp_theochatlieu = loadall_sp_theochatlieu("", $id_sptheochatlieu);
+                include "view/sptheochatlieu.php";
+                break;
+
 
 
         case "lienhe":

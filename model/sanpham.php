@@ -86,25 +86,22 @@ function loadall_sanpham($kyw = " ", $iddm = 0)
 }
 
 
-function loadall_sp_theochatlieu($kyw = " ", $id_chatlieu = 0)
-
+function loadall_sp_theochatlieu($kyw = " ", $id_sptheochatlieu = 0)
 {
     $sql = "select * from sanpham where 1";
     if ($kyw != "") {
         $sql .= " and tensp like '%" . $kyw . "%'";
     }
-
-    if ($id_chatlieu > 0) {
-        $sql .= " and id_chatlieu ='" . $id_chatlieu . "'";
-
+    if ($id_sptheochatlieu > 0) {
+        $sql .= " and id_sptheochatlieu ='" . $id_sptheochatlieu . "'";
     }
 
     $sql .= " order by id desc";
 
-
-    $listchatlieu = pdo_query($sql);
-    return  $listchatlieu;
+    $listsp_theochatlieu = pdo_query($sql);
+    return $listsp_theochatlieu;
 }
+
 
 
 
