@@ -54,12 +54,12 @@ if (is_file($hinhpath)) {
                         <h2><label for="">Mô tả:
                                 <?= $mota ?>
                             </label></h2>
-                        <h2><label for="">Mùa :
+                        <h2><label for="">Chất liệu
                                 <?php
-                                foreach ($listmua as $sptheomua) {
-                                    extract($sptheomua);
-                                    if ($id_sptheomua === $id_mua) {
-                                        echo $ten_mua;
+                                foreach ($listchatlieu as $sptheochatlieu) {
+                                    extract($sptheochatlieu);
+                                    if ($id_sptheochatlieu === $id_chatlieu) {
+                                        echo $ten_chatlieu;
                                     } else {
                                         echo "";
                                     }

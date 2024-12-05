@@ -115,13 +115,13 @@ if (isset($_GET['act'])) {
             include "donhang/update.php";
             break;
 
-        case "xoadh":
-            if (isset($_GET['id']) && ($_GET['id'])) {
-                delete_donhang($_GET['id']);
-            }
-            $listdonhang = loadall_donhang();
-            include "donhang/list.php";
-            break;
+        // case "xoadh":
+        //     if (isset($_GET['id']) && ($_GET['id'])) {
+        //         delete_donhang($_GET['id']);
+        //     }
+        //     $listdonhang = loadall_donhang();
+        //     include "donhang/list.php";
+        //     break;
 
         case "updatedh":
             if (isset($_POST["capnhat"]) && ($_POST["capnhat"])) {
@@ -196,57 +196,104 @@ if (isset($_GET['act'])) {
             if (isset($_POST['listok']) && ($_POST['listok'])) {
                 $kyw = $_POST['kyw'];
                 $iddm = $_POST['iddm'];
-                $id_sp_theomua = $_POST['id_sp_theomua'];
+                $id_sp_theochatlieu = $_POST['id_sp_theochatlieu'];
             } else {
                 $kyw = '';
                 $iddm = 0;
-                $id_sp_theomua = 0;
+                $id_sp_theochatlieu = 0;
             }
 
             $listdanhmuc = loadall_danhmuc();
-            $listsanpham = loadall_sanpham($kyw, $iddm, $id_sp_theomua);
+            $listsanpham = loadall_sanpham($kyw, $iddm, $id_sp_theochatlieu);
             include "sanpham/list.php";
             break;
 
-        case "addsp":
-            if (isset($_POST['themmoi']) && ($_POST['themmoi'])) {
-                $tensp = $_POST['tensp'];
-                $gia = $_POST['gia'];
-                $mota = $_POST['mota'];
-                $img = $_FILES['hinh']['name'];
-                $iddm = $_POST['iddm'];
-                $id_sp_theomua = $_POST['id_sp_theomua'];
-
-                $target_dir = "../upload_file/";
-                $target_file = $target_dir . basename($_FILES["hinh"]["name"]);
-                if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
-                    // File uploaded thành công
+            case "addsp":
+                if (isset($_POST['themmoi']) && ($_POST['themmoi'])) {
+    
+                    $iddm = $_POST['iddm'];
+                    $id_sptheochatlieu = $_POST['id_sptheochatlieu'];
+                    $tensp = $_POST['tensp'];
+                    $giasp = $_POST['giasp'];
+                    $mota = $_POST['mota'];
+                    $soluong = $_POST['soluong'];
+                    $luotxem = $_POST['luotxem'];
+                    $trangthai = $_POST['trangthai'];
+                    $hinh = $_FILES['hinh']['name'];
+                    $target_dir = "../upload_file/";
+                    $target_file = $target_dir . basename($_FILES["hinh"]["name"]);
+                    if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
+                        //echo "Load ảnh thành công";
+                    } else {
+                        //echo "Upload ảnh không thành công";
+                    }
+                    insert_sanpham($tensp, $giasp, $hinh, $mota, $soluong, $luotxem, $trangthai, $iddm, $id_sptheochatlieu);
+                    $thongbao = "Thêm thành công";
                 }
+                $listchatlieu = loadall_sptheochatlieu();
+                $listdanhmuc = loadall_danhmuc();
+                include "sanpham/add.php";
+                break;
 
-                insert_sanpham($tensp, $giasp, $hinh, $mota, $soluong, $luotxem, $trangthai, $iddm, $id_chatlieu);
-                $thongbao = "Thêm thành công sản phẩm";
-            }
-            $listdanhmuc = loadall_danhmuc();
-            $listsp_theomua = loadall_sp_theochatlieu();
-            include "sanpham/add.php";
-            break;
+            case "suasp":
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $sanpham = loadone_sanpham($_GET['id']);
+                }
+                $listdanhmuc = loadall_danhmuc();
+                $listchatlieu = loadall_sptheochatlieu();
+                include "sanpham/update.php";
+                break;
 
-        case "updatesp":
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                $sanpham = loadone_sanpham($_GET['id']);
-            }
-            $listdanhmuc = loadall_danhmuc();
-            $listsp_theomua = loadall_sp_theochatlieu();
-            include "sanpham/update.php";
-            break;
+                case "updatesp":
+                    if (isset($_POST["capnhat"]) && ($_POST["capnhat"])) {
+                        $id = $_POST['id'];
+                        $iddm = $_POST['iddm'];
+                        $id_sptheochatlieu = $_POST['id_sptheochatlieu'];
+                        $tensp = $_POST['tensp'];
+                        $giasp = $_POST['giasp'];
+                        $mota = $_POST['mota'];
+                        $soluong = $_POST['soluong'];
+                        $luotxem = $_POST['luotxem'];
+                        $trangthai = $_POST['trangthai'];
+                        $hinh = $_FILES['hinh']['name'];
+                        $target_dir = "../upload_file/";
+                        $target_file = $target_dir . basename($_FILES["hinh"]["name"]);
+                        if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
+                            //echo "Load ảnh thành công";
+                        } else {
+                            // echo "Upload ảnh không thành công";
+                        }
+        
+                        update_sanpham($id, $iddm, $id_sptheochatlieu, $tensp, $giasp, $mota, $soluong, $luotxem, $trangthai, $hinh);
+                        $thongbao = 'Cập nhật thành công';
+        
+                    }
+        
+                    $listchatlieu = loadall_sptheochatlieu();
+                    $listdanhmuc = loadall_danhmuc();
+                    $listsanpham = loadall_sanpham();
+                    include "sanpham/list.php";
+                    break;
 
-        case "xoa":
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                delete_sanpham($_GET['id']);
-            }
-            $listdanhmuc = loadall_danhmuc();
-            $listsanpham = loadall_sanpham($kyw, $iddm, $id_sp_theomua);
-            include "sanpham/list.php";
-            break;
+                    case "xoasp":
+                        if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                            delete_sapham($_GET['id']);
+                        }
+                        $listsanpham = loadall_sanpham(" ", 0);
+                        include "sanpham/list.php";
+                        break;
+
+            case "chitietsp":
+                if (isset($_GET['id']) && $_GET['id'] > 0) {
+    
+                    $sanpham = loadone_sanpham($_GET['id']);
+    
+    
+                }
+                $listchatlieu = loadall_sptheochatlieu();
+                $listbinhluan = loadall_binhluan_admin();
+                $listdanhmuc = loadall_danhmuc();
+                include "sanpham/chitietsp.php";
+                break;
     }
 }

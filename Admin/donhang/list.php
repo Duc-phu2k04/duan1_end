@@ -30,28 +30,32 @@
 
 
                         <?php
+                        usort($listdonhang, function ($a, $b) {
+                            return strtotime($b['thoigian_mua']) - strtotime($a['thoigian_mua']);
+                        });
+
                         foreach ($listdonhang as $donhang) :
                             extract($donhang);
-                            $linkdh ="index.php?act=chitietdh&id=". $id ;
+                            $linkdh = "index.php?act=chitietdh&id=" . $id;
                             $suadh = "index.php?act=suadh&id=" . $id;
                             $xoadh = "index.php?act=xoadh&id=" . $id;
-                            ?>
-                                <tr>
-                                <td><?= $donhang['id']?></td>
-                                <td><?= $donhang['nguoidung']?></td>
-                                <td><?= $donhang['sdt']?> </td>
-                                <td><?= $donhang['email']?> </td>
-                                <td><?= $donhang['diachi']?></td>
-                                <td><?= $donhang['thoigian_mua']?></td>
-                                <td><?= $donhang['soluong']?></td>
-                                <td><?= $donhang['ten_trangthai']?></td>
-                                <td>  
-                                    <a href="<?= $linkdh?>"><input type="button" class=" form-control btn btn-secondary" value="Xem đơn hàng"></a> 
-                                    <a href="<?= $suadh ?>"><input type="button" class=" form-control btn btn-warning mt-2" value="Sửa"></a> 
-                                    <a href="<?= $xoadh ?>" ><input type="button" class=" form-control btn btn-danger mt-2" onclick="return confirm('Bạn có muốn xóa không?')" value="Xóa"></a>
-                                </td> 
-                                </tr>
-                       <?php endforeach;?>
+                        ?>
+                            <tr>
+                                <td><?= $donhang['id'] ?></td>
+                                <td><?= $donhang['nguoidung'] ?></td>
+                                <td><?= $donhang['sdt'] ?> </td>
+                                <td><?= $donhang['email'] ?> </td>
+                                <td><?= $donhang['diachi'] ?></td>
+                                <td><?= $donhang['thoigian_mua'] ?></td>
+                                <td><?= $donhang['soluong'] ?></td>
+                                <td><?= $donhang['ten_trangthai'] ?></td>
+                                <td>
+                                    <a href="<?= $linkdh ?>"><input type="button" class=" form-control btn btn-secondary" value="Xem đơn hàng"></a>
+                                    <a href="<?= $suadh ?>"><input type="button" class=" form-control btn btn-warning mt-2" value="Cập nhật"></a>
+                                    <!-- <a href="<?= $xoadh ?>" ><input type="button" class=" form-control btn btn-danger mt-2" onclick="return confirm('Bạn có muốn xóa không?')" value="Xóa"></a> -->
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
 
 
                     </tbody>
