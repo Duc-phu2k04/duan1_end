@@ -54,7 +54,7 @@ if (is_file($hinhpath)) {
                         <h2><label for="">Mô tả:
                                 <?= $mota ?>
                             </label></h2>
-                        <h2><label for="">Mùa :
+                        <h2><label for="">Chất liệu
                                 <?php
                                 foreach ($listchatlieu as $sptheochatlieu) {
                                     extract($sptheochatlieu);

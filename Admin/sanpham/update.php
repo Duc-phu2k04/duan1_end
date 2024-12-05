@@ -37,16 +37,6 @@ if (is_file($hinhpath)) {
 
                     <!-- Chọn mùa hoặc chất liệu -->
                     <div class="mb-3">
-                        <select name="id_sptheomua">
-                            <option value="0" seclection>Mùa</option>
-                            <?php
-                            foreach ($listmua as $sptheomua) {
-                                extract($sptheomua);
-                                $s = ($id_sptheomua == $id_mua) ? "selected" : "";
-                                echo '<option value="' . $id_mua . '" ' . $s . '>' . $ten_mua . '</option>';
-                            }
-                            ?>
-                        </select>
 
                         <select name="id_sptheochatlieu">
                             <option value="0" seclection>Chất liệu</option>

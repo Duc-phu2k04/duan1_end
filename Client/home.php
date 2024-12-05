@@ -1,5 +1,6 @@
 
 <!-- Start Imgslide -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
     .home-slide9 img {
@@ -15,6 +16,55 @@
 	.logo h2 {
     color: white;
 }
+.box-product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; 
+    justify-content: center; 
+    padding: 0;
+    margin: 0;
+}
+
+
+.product-item {
+    flex: 1 0 30%; 
+    max-width: 300px; 
+    margin-bottom: 20px; 
+    box-sizing: border-box;
+    padding: 0;
+}
+
+
+.product-thumb img {
+    width: 100%;      
+    height: auto;     
+    object-fit: cover; 
+    max-height: 200px; 
+}
+
+
+.product-info {
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
 
 </style>
 
@@ -49,51 +99,50 @@
 				</div>
 			</div>
 			<div class="box-content">
-				<div class="box-content-inner">
-					<ul class="box-product-list owl-carousel nav-style2 nav-center-outside" data-nav="true"
-						data-dots="false" data-margin="30" data-loop="true"
-						data-responsive='{"0":{"items":1},"600":{"items":2},"1000":{"items":3}}'>
-						<?php foreach ($sanphamShop as $sanpham):
-							extract($sanpham);
+    <div class="box-content-inner">
+        <ul class="box-product-list owl-carousel nav-style2 nav-center-outside" data-nav="true"
+            data-dots="false" data-margin="30" data-loop="true"
+            data-responsive='{"0":{"items":1},"600":{"items":2},"1000":{"items":3}}'>
+            <?php foreach ($sanphamShop as $sanpham):
+                extract($sanpham);
 
-							$hinh = "../upload_file/" . $img;
-							$linksp = "index.php?act=chitietsp&id=" . $id;
-							?>
-							<li class="product-item style2">
-								<div class="product-inner">
-									<form action="index.php?act=addgiohang" method="post">
-										<div class="product-thumb has-back-image">
-											<input type="hidden" name="id" value="<?= $id ?>">
+                $hinh = "../upload_file/" . $img;
+                $linksp = "index.php?act=chitietsp&id=" . $id;
+            ?>
+            <li class="product-item style2">
+                <div class="product-inner">
+                    <form action="index.php?act=addgiohang" method="post">
+                        <div class="product-thumb has-back-image">
+                            <input type="hidden" name="id" value="<?= $id ?>">
 
-											<input type="hidden" name="img" value="<?= $img ?>">
-											<a href="<?= $linksp ?>"><img src="<?= $hinh ?>" alt=""></a>
+                            <input type="hidden" name="img" value="<?= $img ?>">
+                            <a href="<?= $linksp ?>">
+                                <img src="<?= $hinh ?>" alt="" class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="product-info text-center">
+                            <input type="hidden" name="tensp" value="<?= $tensp ?>">
+                            <h3 class="product-name"><a href="#"><?= $tensp ?></a></h3>
 
-										</div>
-										<div class="product-info">
-											<input type="hidden" name="tensp" value="<?= $tensp ?>">
-											<h3 class="product-name"><a href="#">
-													<?= $tensp ?>
-												</a></h3>
+                            <input type="hidden" name="soluong" value="1">
 
-											<input type="hidden" name="soluong" value="1">
+                            <input type="hidden" name="giasp" value="<?= $giasp ?>">
+                            <span class="price">
+                                <ins>
+                                    <?= $giasp ?> ₫
+                                </ins>
+                            </span>
+                            <input type="submit" name="addtocart" class="btn btn-primary" onclick="return confirmAddgh()"
+                                value="Thêm vào giỏ hàng">
+                        </div>
+                    </form>
+                </div>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</div>
 
-											<input type="hidden" name="giasp" value="<?= $giasp ?>">
-											<span class="price">
-												<ins>
-													<?= $giasp ?> ₫
-												</ins>
-											</span>
-											<input type="submit" name="addtocart" onclick="return confirmAddgh()"
-												value="Thêm vào giỏ hàng">
-										</div>
-								</div>
-								</form>
-							</li>
-						<?php endforeach; ?>
-
-					</ul>
-				</div>
-			</div>
 		</div>
 	</div>
 
