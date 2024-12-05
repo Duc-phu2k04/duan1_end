@@ -27,12 +27,12 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="exampleInputName" class="form-label">Mùa</label>
-                        <select name="id_sptheomua" id="">
+                        <label for="exampleInputName" class="form-label">Chất liệu</label>
+                        <select name="id_sptheochatlieu" id="">
                             <?php
-                            foreach ($listmua as $sptheomua) {
-                                extract($sptheomua);
-                                echo '<option value="' . $id_mua. '"> ' . $ten_mua . '</option>';
+                            foreach ($listchatlieu as $sptheochatlieu) {
+                                extract($sptheochatlieu);
+                                echo '<option value="' . $id_chatlieu. '"> ' . $ten_chatlieu . '</option>';
                             }
                             ?>
 
@@ -61,7 +61,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPrice" class="form-label">Lượt xem</label>
-                        <input type="text" class="form-control" name="luotxem">
+                        <input type="text" class="form-control" name="luotxem" >
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPrice" class="form-label">Trang thái</label>
@@ -86,13 +86,13 @@
         </div>
     </div>
     <script>
-    function confirmAddsp() {
-        if (confirm("Bạn có muốn thêm sản phẩm này không?")) {
-            document.location = "index.php?act=listsp";
-        } else {
-            return false;
+        function confirmAddsp() {
+            if (confirm("Bạn có muốn thêm sản phẩm này không?")) {
+                document.location = "index.php?act=listsp";
+            } else {
+                return false;
+            }
         }
-    }
     </script>
 
 </div>

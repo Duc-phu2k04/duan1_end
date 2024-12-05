@@ -54,12 +54,12 @@ if (is_file($hinhpath)) {
                         <h2><label for="">Mô tả:
                                 <?= $mota ?>
                             </label></h2>
-                        <h2><label for="">Độ tuổi :
+                        <h2><label for="">Chất liệu
                                 <?php
-                                foreach ($listmua as $sptheodotuoi) {
-                                    extract($sptheodotuoi);
-                                    if ($id_spthedotuoi === $id_dotuoi) {
-                                        echo $dotuoi;
+                                foreach ($listchatlieu as $sptheochatlieu) {
+                                    extract($sptheochatlieu);
+                                    if ($id_sptheochatlieu === $id_chatlieu) {
+                                        echo $ten_chatlieu;
                                     } else {
                                         echo "";
                                     }
@@ -81,10 +81,10 @@ if (is_file($hinhpath)) {
             </div>
             <br>
 
-            <iframe src="./sanpham/listbl.php?id_sp=<?php if (is_array($sanpham)) {
-                                                        extract($sanpham);
-                                                    }
-                                                    echo $id; ?>" width="100%" height="300px" frameborder="0"></iframe>
+            <iframe src="./sanpham/listbl.php?id_sp=<?php if(is_array($sanpham)){
+                extract($sanpham);
+            } 
+            echo $id;?>" width="100%" height="300px" frameborder="0"></iframe>
             <div class="row">
                 <div class="function-back">
                     <a href="index.php?act=listsp"><input type="submit" class="btn btn-primary"
@@ -99,10 +99,9 @@ if (is_file($hinhpath)) {
         </div>
     </div>
     <br>
+    
+    <?php //include "listbl.php"; ?>
 
-    <?php //include "listbl.php"; 
-    ?>
-
-    <!--End Content -->
+<!--End Content -->
 
 </div>
