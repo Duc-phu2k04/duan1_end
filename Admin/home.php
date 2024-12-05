@@ -15,8 +15,8 @@
                                 } ?>
                             </h3>
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Tài khoản</div>
-
+                                Tài khoản
+                            </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-user-circle fa-2x text-gray-300"></i>
@@ -38,12 +38,11 @@
                                 } ?>
                             </h3>
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Danh mục</div>
-
+                                Danh mục
+                            </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-clipboard fa-2x text-gray-300"></i>
-
                         </div>
                     </div>
                 </div>
@@ -62,12 +61,11 @@
                                 } ?>
                             </h3>
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                Sản phẩm</div>
-
+                                Sản phẩm
+                            </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-box-open fa-2x text-gray-300"></i>
-
                         </div>
                     </div>
                 </div>
@@ -86,8 +84,8 @@
                                 } ?>
                             </h3>
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Bình luận</div>
-
+                                Bình luận
+                            </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -99,20 +97,14 @@
     </div>
 </div>
 
-<!--End Content -->
-
-
+<!-- Thống kê -->
 <div class="container-fluid">
-    <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Thống kê</h1>
-    </div> -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h4 class="m-0 font-weight-bold text-primary">Thống kê sản phẩm</h4>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <br>
                 <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
@@ -125,34 +117,17 @@
                         </tr>
                     </thead>
                     <tbody>
-
-                        <?php foreach ($listthongke as $thongke):
-                            extract($thongke);
-                            ?>
+                        <?php foreach ($listthongke as $thongke): 
+                            extract($thongke); ?>
                         <tr>
-                            <td>
-                                <?= $madm ?>
-                            </td>
-                            <td>
-                                <?= $tendm ?>
-                            </td>
-                            <td>
-                                <?= $countsp ?>
-                            </td>
-                            <td>
-                                <?= $maxprice ?>
-                            </td>
-                            <td>
-                                <?= $minprice ?>
-                            </td>
-                            <td>
-                                <?= $avgprice ?>
-                            </td>
+                            <td><?= $madm ?></td>
+                            <td><?= $tendm ?></td>
+                            <td><?= $countsp ?></td>
+                            <td><?= $maxprice ?></td>
+                            <td><?= $minprice ?></td>
+                            <td><?= $avgprice ?></td>
                         </tr>
                         <?php endforeach; ?>
-
-
-
                     </tbody>
                 </table>
             </div>
@@ -160,22 +135,17 @@
     </div>
 </div>
 
-
+<!-- Biểu đồ -->
 <div class="container-fluid">
-    <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Biểu đồ</h1>
-    </div> -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h4 class="m-0 font-weight-bold text-primary">Biểu đồ</h4>
         </div>
         <div class="card-body">
-
-            <div id="myChart" style="width:100%;  height:600px; ">
-            </div>
+            <div id="myChart" style="width:100%; height:600px;"></div>
             <script>
             google.charts.load('current', {
-                'packages': ['corechart']
+                packages: ['corechart']
             });
             google.charts.setOnLoadCallback(drawChart);
 
@@ -183,20 +153,15 @@
                 const data = google.visualization.arrayToDataTable([
                     ['Tên', 'Số liệu'],
                     <?php
-                        $tongdm = count($listthongke);
-                        $i = 1;
+                            $tongdm = count($listthongke);
+                            $i = 1;
 
-                        foreach ($listthongke as $thongke) {
-                            extract($thongke);
-                            if ($i == $tongdm)
-                                $dauphay = "";
-                            else
-                                $dauphay = ",";
-                            echo "['" . $thongke['tendm'] . "', " . $thongke['countsp'] . "]" . $dauphay;
-                            $i += 1;
-
-                        }
-
+                            foreach ($listthongke as $thongke) {
+                                extract($thongke);
+                                $dauphay = ($i == $tongdm) ? "" : ",";
+                                echo "['" . $thongke['tendm'] . "', " . $thongke['countsp'] . "]" . $dauphay;
+                                $i++;
+                            }
                         ?>
                 ]);
 
@@ -208,12 +173,6 @@
                 chart.draw(data, options);
             }
             </script>
-
-
         </div>
     </div>
-
-
-    <!--End Content -->
-
 </div>
