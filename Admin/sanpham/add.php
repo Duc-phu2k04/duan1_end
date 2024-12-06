@@ -61,7 +61,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPrice" class="form-label">Lượt xem</label>
-                        <input type="text" class="form-control" name="luotxem" >
+                        <input type="text" class="form-control" name="luotxem">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPrice" class="form-label">Trang thái</label>
@@ -86,13 +86,13 @@
         </div>
     </div>
     <script>
-        function confirmAddsp() {
-            if (confirm("Bạn có muốn thêm sản phẩm này không?")) {
-                document.location = "index.php?act=listsp";
-            } else {
-                return false;
-            }
+    function confirmAddsp() {
+        if (confirm("Bạn có muốn thêm sản phẩm này không?")) {
+            document.location = "index.php?act=listsp";
+        } else {
+            return false;
         }
+    }
     </script>
 
 </div>
