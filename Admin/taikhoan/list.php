@@ -26,8 +26,8 @@
                     </thead>
                     <tbody>
                         <?php
-
-                        foreach ($listtaikhoan as $taikhoan): 
+                        $listtaikhoan = array_reverse($listtaikhoan);
+                        foreach ($listtaikhoan as $taikhoan):
                             extract($taikhoan);
                             $suatk = "index.php?act=suatk&id=" . $tk_id;
                             $xoatk = "index.php?act=xoatk&id=" . $tk_id;
@@ -37,20 +37,21 @@
                             } else {
                                 $url = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
                             }
-                            ?>
+                        ?>
                             <tr>
-                            <td><?= $tk_id  ;?></td>
-                            <td><?= $tk_nguoidung ;?></td>
-                            <td><?= $tk_matkhau ;?></td>
-                            <td><?= $tk_email ;?></td>
-                            <td><img src="<?= $url ?>" width="100px" height="130px"></td>
-                            <td><?= $tk_diachi ?></td>
-                            <td><?= $tk_sdt ?></td>
-                            <td><?= $r_name_role?></td>
-                            <td><a href="<?= $suatk ?>" ><input type="button" class= " form-control btn btn-warning" value="Sửa"></a>
-                            <a href="<?= $xoatk ?>" onclick="return confirmDeletetk()"><input type="button" class=" form-control btn btn-danger mt-2" value="Xóa"></a></td>
-                        </tr>
-                        <?php endforeach;?>
+                                <td><?= $tk_id; ?></td>
+                                <td><?= $tk_nguoidung; ?></td>
+                                <td><?= $tk_matkhau; ?></td>
+                                <td><?= $tk_email; ?></td>
+                                <td><img src="<?= $url ?>" width="100px" height="130px"></td>
+                                <td><?= $tk_diachi ?></td>
+                                <td><?= $tk_sdt ?></td>
+                                <td><?= $r_name_role ?></td>
+                                <td><a href="<?= $suatk ?>"><input type="button" class=" form-control btn btn-warning" value="Sửa"></a>
+                                    <a href="<?= $xoatk ?>" onclick="return confirmDeletetk()"><input type="button" class=" form-control btn btn-danger mt-2" value="Xóa"></a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
 
                     </tbody>
                 </table>

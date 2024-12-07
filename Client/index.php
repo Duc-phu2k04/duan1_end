@@ -338,7 +338,6 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
     };
 
     $sanphamShop = loadall_shop();
-    $sanphamtop5 = loadall_sanpham_top10();
     $listdanhmuc = loadall_danhmuc();
     $listsptheochatlieu = loadall_sptheochatlieu();
     $listsanpham = loadall_sanpham($kyw, $iddm);

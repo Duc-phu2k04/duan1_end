@@ -21,12 +21,7 @@ function loadall_sanpham_top5()
     return $sanphamtop5;
 }
 
-function loadall_sanpham_top10()
-{
-    $sql = "select * from sanpham where 1 order by giasp desc limit 0,10";
-    $sanphamtop10 = pdo_query($sql);
-    return $sanphamtop10;
-}
+
 
 function loadall_shop($kyw = " ", $iddm = 0)
 {
