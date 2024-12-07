@@ -69,8 +69,10 @@ $regexEmail = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]
                     echo "<span style='color:red;'>Mật khẩu ít nhất 8 ký tự</span>";
                 } else {
                     insert_taikhoan($nguoidung, $matkhau, $email, $img, $diachi, $sdt, $id_role);
-                    echo "<span style='color:green;'>Đăng ký thành công</span>";
-                    header("Location: index.php?act=dangnhap"); 
+                    echo '<script>
+                    alert("Đăng ký thành công");
+                    window.location.href = "index.php?act=dangnhap";
+                          </script>';
                     exit();
                 }
             }
@@ -113,6 +115,7 @@ $regexEmail = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]
             }
             return true;
         }
+
 
         function myFunction() {
             var x = document.getElementById("password");
