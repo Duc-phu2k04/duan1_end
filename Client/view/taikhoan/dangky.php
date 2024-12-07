@@ -1,12 +1,8 @@
 <?php
-// Kết nối database và các hàm checknguoidung, checkemail, insert_taikhoan (Bạn cần thay thế bằng mã thực tế của bạn)
+
 $regexEmail = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/";
 
-// Giả sử bạn đã có các hàm checknguoidung, checkemail, insert_taikhoan đã được định nghĩa
-// Ví dụ:
-// function checknguoidung($nguoidung) { ... }
-// function checkemail($email) { ... }
-// function insert_taikhoan($nguoidung, $matkhau, $email, $img, $diachi, $sdt, $id_role) { ... }
+
 ?>
 
 <div class="wrapper">
@@ -74,7 +70,7 @@ $regexEmail = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]
                 } else {
                     insert_taikhoan($nguoidung, $matkhau, $email, $img, $diachi, $sdt, $id_role);
                     echo "<span style='color:green;'>Đăng ký thành công</span>";
-                    header("Location: index.php?act=dangnhap"); // Chuyển hướng sang trang đăng nhập
+                    header("Location: index.php?act=dangnhap"); 
                     exit();
                 }
             }
@@ -93,7 +89,7 @@ $regexEmail = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]
     </div>
 
     <script>
-        // Kiểm tra khi form được submit
+        
         function validateForm() {
             var nguoidung = document.getElementById("nguoidung").value;
             var email = document.getElementById("email").value;
@@ -101,30 +97,23 @@ $regexEmail = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]
             var sdt = document.getElementById("sdt").value;
             var diachi = document.getElementById("diachi").value;
 
-            // Kiểm tra nếu có trường nào để trống
             if (nguoidung == "" || email == "" || matkhau == "" || sdt == "" || diachi == "") {
                 alert("Vui lòng điền tất cả các trường.");
                 return false;
             }
-
-            // Kiểm tra định dạng email
             var regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
             if (!regexEmail.test(email)) {
                 alert("Email không hợp lệ.");
                 return false;
             }
 
-            // Kiểm tra độ dài mật khẩu
             if (matkhau.length < 8) {
                 alert("Mật khẩu phải có ít nhất 8 ký tự.");
                 return false;
             }
-
-            // Nếu mọi thứ hợp lệ, cho phép gửi form
             return true;
         }
 
-        // Hàm để hiển thị mật khẩu
         function myFunction() {
             var x = document.getElementById("password");
             if (x.type === "password") {
