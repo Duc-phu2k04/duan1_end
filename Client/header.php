@@ -48,7 +48,7 @@ if (isset($_POST["dangxuat"])) {
 
 <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Oswald:400,300,700'>
 
-<title>SEIGEK</title>
+<title>ROLEX</title>
 
 <body class="home">
 	<div id="box-mobile-menu" class="box-mobile-menu full-height full-width">
