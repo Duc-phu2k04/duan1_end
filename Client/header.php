@@ -10,8 +10,6 @@ if (isset($_POST["dangxuat"])) {
 	}
 </style>
 
-<!-- Mirrored from html.kutethemes.com/boutique/html/index9.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 09 Nov 2023 04:33:46 GMT -->
-
 <link rel="stylesheet" type="text/css" href="css/animate.css">
 
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -64,7 +62,7 @@ if (isset($_POST["dangxuat"])) {
 					<div class="row">
 						<div class="col-sm-12 col-md-2">
 							<div class="logo">
-								<a href="index.php"><H2>Rolex</H2></a>
+								<a href="index.php"><H2>ROLEX</H2></a>
 							</div>
 						</div>
 

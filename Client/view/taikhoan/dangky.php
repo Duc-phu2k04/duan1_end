@@ -1,36 +1,43 @@
 <?php
+// Kết nối database và các hàm checknguoidung, checkemail, insert_taikhoan (Bạn cần thay thế bằng mã thực tế của bạn)
 $regexEmail = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/";
+
+// Giả sử bạn đã có các hàm checknguoidung, checkemail, insert_taikhoan đã được định nghĩa
+// Ví dụ:
+// function checknguoidung($nguoidung) { ... }
+// function checkemail($email) { ... }
+// function insert_taikhoan($nguoidung, $matkhau, $email, $img, $diachi, $sdt, $id_role) { ... }
 ?>
 
 <div class="wrapper">
     <div class="login">
         <h1>Đăng ký</h1>
-        <form action="index.php?act=dangky" method="post" class="form-login" enctype="multipart/form-data">
+        <form action="index.php?act=dangky" method="post" class="form-login" enctype="multipart/form-data" onsubmit="return validateForm()">
             <div class="form-input">
                 <p>Tài khoản</p>
-                <input type="text" name="nguoidung">
+                <input type="text" name="nguoidung" id="nguoidung">
             </div>
             <div class="form-input">
                 <p>Email</p>
-                <input type="text" name="email">
+                <input type="text" name="email" id="email">
             </div>
 
             <p>Ảnh</p>
-            <input type="file" name="img">
+            <input type="file" name="img" id="img">
             <br>
 
             <div class="form-input">
                 <p>Số điện thoại</p>
-                <input type="text" name="sdt" />
+                <input type="text" name="sdt" id="sdt">
             </div>
             <div class="form-input">
                 <p>Nhập mật khẩu</p>
-                <input type="password" id="password" name="matkhau" />
+                <input type="password" id="password" name="matkhau">
             </div>
 
             <div class="form-input">
                 <p>Địa chỉ</p>
-                <input type="text" name="diachi" />
+                <input type="text" name="diachi" id="diachi">
             </div>
 
             <input type="checkbox" class="mt-2" onclick="myFunction()"> Hiện mật khẩu
@@ -64,19 +71,17 @@ $regexEmail = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]
                     echo "<span style='color:red;'>Tài khoản đã tồn tại</span>";
                 } else if ($length < 8) {
                     echo "<span style='color:red;'>Mật khẩu ít nhất 8 ký tự</span>";
-                } 
-                else {
+                } else {
                     insert_taikhoan($nguoidung, $matkhau, $email, $img, $diachi, $sdt, $id_role);
                     echo "<span style='color:green;'>Đăng ký thành công</span>";
-                    // header("Location: index.php?act=dangnhap");
+                    header("Location: index.php?act=dangnhap"); // Chuyển hướng sang trang đăng nhập
+                    exit();
                 }
-
-            } ?>
-
-
+            }
+            ?>
 
             <div class="login-btn">
-                <input type="submit" onclick="return confirmDangkytk()" name="dangky" value="Đăng Ký">
+                <input type="submit" name="dangky" value="Đăng Ký">
             </div>
             <div class="forget-password">
                 <a href="#">Quên mật khẩu ?</a>
@@ -88,16 +93,38 @@ $regexEmail = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]
     </div>
 
     <script>
+        // Kiểm tra khi form được submit
+        function validateForm() {
+            var nguoidung = document.getElementById("nguoidung").value;
+            var email = document.getElementById("email").value;
+            var matkhau = document.getElementById("password").value;
+            var sdt = document.getElementById("sdt").value;
+            var diachi = document.getElementById("diachi").value;
 
-
-        function confirmDangkytk() {
-            if (confirm("Bạn có muốn đăng ký tài khoản này không")) {
-                document.location = "index.php?act=dangnhap";
-                alert("Đăng ký thành công");
-            } else {
+            // Kiểm tra nếu có trường nào để trống
+            if (nguoidung == "" || email == "" || matkhau == "" || sdt == "" || diachi == "") {
+                alert("Vui lòng điền tất cả các trường.");
                 return false;
             }
+
+            // Kiểm tra định dạng email
+            var regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+            if (!regexEmail.test(email)) {
+                alert("Email không hợp lệ.");
+                return false;
+            }
+
+            // Kiểm tra độ dài mật khẩu
+            if (matkhau.length < 8) {
+                alert("Mật khẩu phải có ít nhất 8 ký tự.");
+                return false;
+            }
+
+            // Nếu mọi thứ hợp lệ, cho phép gửi form
+            return true;
         }
+
+        // Hàm để hiển thị mật khẩu
         function myFunction() {
             var x = document.getElementById("password");
             if (x.type === "password") {

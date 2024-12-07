@@ -59,7 +59,6 @@ if (!empty($listsanpham)) {
         $xoasp = "index.php?act=xoasp&id=" . $id;
         $hinhpath = "../upload_file/" . $img;
         $hinh = is_file($hinhpath) ? "<img src='$hinhpath' height='90'>" : "No img";
-
         echo '<tr>
             <td>' . $id . '</td>
             <td>' . $tensp . '</td>

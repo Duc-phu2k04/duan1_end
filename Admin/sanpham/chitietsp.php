@@ -1,3 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    .product-detail-title {
+        font-size: 1.2rem;
+        color: #333;
+        margin-bottom: 12px;
+        line-height: 1.5;
+    }
+
+    .product-detail-title strong {
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    .list-product-img img {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid #ddd;
+        padding: 10px;
+        background-color: #f7f7f7;
+    }
+
+    .list-product-text {
+        font-family: Arial, sans-serif;
+        font-size: 1.2rem;
+        color: #555;
+    }
+
+    /* Tạo hiệu ứng cho text khi hover */
+    .product-detail-title:hover {
+        color: #007bff;
+        cursor: pointer;
+    }
+
+    .card {
+        border-radius: 10px;
+    }
+
+    .card-header {
+        background-color: #f8f9fc;
+        border-bottom: 2px solid #ddd;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    /* Điều chỉnh khoảng cách cho các phần tử */
+    .container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    /* Đảm bảo responsive */
+    @media (max-width: 768px) {
+        .list-product-img,
+        .list-product-text {
+            max-width: 100%;
+            margin: 0;
+        }
+
+        .list-product-text {
+            padding-left: 0;
+        }
+    }
+</style>
+</head>
+<body>
+</body>
+</html>
 <?php
 
 if (is_array($sanpham)) {
@@ -10,10 +85,7 @@ if (is_file($hinhpath)) {
 } else {
     $img = "Chưa có ảnh";
 }
-
 ?>
-
-
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Sản phẩm</h1>
@@ -80,7 +152,6 @@ if (is_file($hinhpath)) {
                 </div>
             </div>
             <br>
-
             <iframe src="./sanpham/listbl.php?id_sp=<?php if(is_array($sanpham)){
                 extract($sanpham);
             } 
@@ -90,18 +161,8 @@ if (is_file($hinhpath)) {
                     <a href="index.php?act=listsp"><input type="submit" class="btn btn-primary"
                             value="Quay lại trang sản phẩm"></a>
                 </div>
-
-
-
-
-
             </div>
         </div>
     </div>
     <br>
-    
-    <?php //include "listbl.php"; ?>
-
-<!--End Content -->
-
 </div>
