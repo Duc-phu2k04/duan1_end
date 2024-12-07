@@ -59,7 +59,6 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 update_taikhoan_user($id, $email, $img, $diachi, $sdt);
                 // $thongbao = "Cập nhật thành công";
                 header("Location:index.php?act=tkcanhan");
-
             }
             $taikhoan = loadone_taikhoan($id);
             include "view/capnhattk.php";
@@ -71,7 +70,6 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $matkhau = $_POST['matkhau'];
                 update_matkhau($id, $matkhau);
                 header("Location:index.php?act=tkcanhan");
-
             }
             $taikhoan = loadone_taikhoan($id);
             include "view/doimk.php";
@@ -88,16 +86,16 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
 
         case "huydonhang":
             if (isset($_GET['id']) && $_GET['id']) {
-                huydonhang($_GET['id']);
-
-                header("Location: index.php?act=tkcanhan");
+                $donhang = loadone_donhang($_GET['id']);
+                if ($donhang['id_trangthai_donhang'] == 1) { // Kiểm tra trạng thái "Chờ xác nhận"
+                    huydonhang($_GET['id']);
+                    header("Location: index.php?act=tkcanhan&msg=Hủy đơn hàng thành công");
+                } else {
+                    header("Location: index.php?act=tkcanhan&msg=Chỉ có thể hủy đơn hàng trong trạng thái Chờ xác nhận");
+                }
             }
-            $donhang = loadone_donhang_user($_SESSION['user']['id']);
-            $giohang = load_cart_user();
-            $taikhoan = loadone_taikhoan($id);
-
-            include "view/tkcanhan.php";
             break;
+
 
         case "sanpham":
             if (isset($_POST['kyw']) && $_POST['kyw'] != "") {
@@ -115,44 +113,44 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             include("view/sanpham.php");
             break;
 
-            case "chitietsp":
-                if (isset($_POST['addtocart']) && ($_POST['addtocart'])) {
-                    $id = $_POST['id'];
-                    $tensp = $_POST['tensp'];
-                    $img = $_POST['img'];
-                    $giasp = $_POST['giasp'];
-                    $soluong = $_POST['soluong'];
-                    $thanhtien = ((int) $soluong * (int) $giasp);
-                    $sanphamadd = [$id, $tensp, $img, $giasp, $soluong, $thanhtien];
-                    
-                    if (isset($_SESSION['mycart'])) {
-                        $cartItems = $_SESSION['mycart'];
-                        $existingItemKey = null;
-                        foreach ($cartItems as $key => $item) {
-                            if ($item[0] == $id) {
-                                $existingItemKey = $key;
-                                break;
-                            }
+        case "chitietsp":
+            if (isset($_POST['addtocart']) && ($_POST['addtocart'])) {
+                $id = $_POST['id'];
+                $tensp = $_POST['tensp'];
+                $img = $_POST['img'];
+                $giasp = $_POST['giasp'];
+                $soluong = $_POST['soluong'];
+                $thanhtien = ((int) $soluong * (int) $giasp);
+                $sanphamadd = [$id, $tensp, $img, $giasp, $soluong, $thanhtien];
+
+                if (isset($_SESSION['mycart'])) {
+                    $cartItems = $_SESSION['mycart'];
+                    $existingItemKey = null;
+                    foreach ($cartItems as $key => $item) {
+                        if ($item[0] == $id) {
+                            $existingItemKey = $key;
+                            break;
                         }
                     }
-                    if ($existingItemKey !== null) {
-                        $cartItems[$existingItemKey][5] += $thanhtien;
-                        $cartItems[$existingItemKey][4]++;
-                    } else {
-    
-                        array_push($cartItems, $sanphamadd);
-                    }
-                    $_SESSION['mycart'] = $cartItems;
                 }
-    
-                if (isset($_GET['id']) && $_GET['id'] > 0) {
-                    $sanpham = loadone_sanpham($_GET['id']);
-                }
-                $sanphamtop6 = load_sanpham_top6();
-                include "./view/chitietsp.php";
-                break;
+                if ($existingItemKey !== null) {
+                    $cartItems[$existingItemKey][5] += $thanhtien;
+                    $cartItems[$existingItemKey][4]++;
+                } else {
 
-        
+                    array_push($cartItems, $sanphamadd);
+                }
+                $_SESSION['mycart'] = $cartItems;
+            }
+
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $sanpham = loadone_sanpham($_GET['id']);
+            }
+            $sanphamtop6 = load_sanpham_top6();
+            include "./view/chitietsp.php";
+            break;
+
+
 
         case "timkiemdm":
             if (isset($_GET['iddm']) && ($_GET['iddm']) > 0) {
@@ -166,16 +164,17 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             break;
 
         case "sptheochatlieu":
-            if (isset($_GET['id_chatlieu']) && ($_GET['id_chatlieu']) > 0) {
-                $id_chatlieu = $_GET['id_chatlieu'];
-                $id_chatlieu = loadone_sptheochatlieu($_GET['id_chatlieu']);
+            if (isset($_GET['id_sptheochatlieu']) && ($_GET['id_sptheochatlieu']) > 0) {
+                $id_sptheochatlieu = $_GET['id_sptheochatlieu'];
+                $sptheochatlieu = loadone_sptheochatlieu($_GET['id_sptheochatlieu']);
             } else {
-                $id_chatlieu= 0;
+                $id_sptheochatlieu = 0;
             }
             $listsptheochatlieu = loadall_sptheochatlieu();
-            $listsp_theochatlieu = loadall_sp_theochatlieu("", $id_chatlieu);
+            $listsp_theochatlieu = loadall_sp_theochatlieu("", $id_sptheochatlieu);
             include "view/sptheochatlieu.php";
             break;
+
 
 
         case "lienhe":
@@ -320,8 +319,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             } else {
                 $kyw = "";
                 $iddm = 0;
-            }
-            ;
+            };
 
             $listsptheochatlieu = loadall_sptheochatlieu();
             $listdanhmuc = loadall_danhmuc();
@@ -329,7 +327,6 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             include("home.php");
 
             break;
-        
     }
 } else {
     if (isset($_POST['listok']) && ($_POST['listok'])) {
@@ -338,8 +335,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
     } else {
         $kyw = "";
         $iddm = 0;
-    }
-    ;
+    };
 
     $sanphamShop = loadall_shop();
     $sanphamtop5 = loadall_sanpham_top10();
@@ -353,4 +349,3 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
 
 include("footer.php");
 ob_end_flush();
-?>
